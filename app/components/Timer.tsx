@@ -2,7 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export function Timer() {
+interface ITimer {
+	ticking: boolean;
+	setTicking: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function Timer({ ticking, setTicking }: ITimer) {
 	const [minutes, setMinutes] = useState(25);
 	const [seconds, setSeconds] = useState(0);
 
@@ -19,13 +24,13 @@ export function Timer() {
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			clockTicking();
+			if (ticking) clockTicking();
 		}, 1000);
 
 		return () => {
 			clearInterval(timer);
 		};
-	}, [seconds, minutes]);
+	}, [seconds, minutes, ticking]);
 
 	return (
 		<div className="flex flex-col gap-8 items-center">
@@ -38,8 +43,12 @@ export function Timer() {
 			<div className="text-8xl font-extrabold">
 				{minutes}:{seconds.toString().padStart(2, "0")}
 			</div>
-			<Button variant={"pomodoro"} size={"pomodoro"}>
-				Start
+			<Button
+				variant={"pomodoro"}
+				size={"pomodoro"}
+				onClick={() => setTicking((ticking) => !ticking)}
+			>
+				{ticking ? "Stop" : "Start"}
 			</Button>
 		</div>
 	);
