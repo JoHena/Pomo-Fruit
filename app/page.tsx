@@ -1,13 +1,11 @@
-import { Navbar } from "@/app/components/navbar";
 import { Pomodoro } from "./components/Pomodoro";
 
 export default function Home() {
 	return (
 		<main>
-			<Navbar />
 			<Pomodoro />
 
-			<section className="bg-white text-black flex flex-col gap-10 items-center text-xl py-10 font-normal">
+			<section className="bg-white text-black flex flex-col gap-10 items-center text-lg py-10 font-light">
 				<div className="w-1/3">
 					<h2 className="mb-8 font-bold">
 						<span className="border-b-4 border-orange-400 pb-3">What</span> is

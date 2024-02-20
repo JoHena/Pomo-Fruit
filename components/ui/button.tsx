@@ -11,7 +11,7 @@ const buttonVariants = cva(
 			variant: {
 				default: "bg-primary text-primary-foreground hover:bg-primary/90",
 				pomodoro:
-					"bg-primary text-primary-foreground hover:text-black hover:bg-white/90 transition-colors duration-300 o",
+					"bg-[#88D18A] text-[#13293D] font-black tracking-wider hover:text-black hover:bg-white/90 transition-colors duration-300 shadow-md shadow-zinc-800",
 				destructive:
 					"bg-destructive text-destructive-foreground hover:bg-destructive/90",
 				outline:

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { twMerge } from "tailwind-merge";
 
 interface ITimer {
 	ticking: boolean;
@@ -43,7 +44,9 @@ export function Timer({ ticking, setTicking }: ITimer) {
 			<div className="text-8xl font-extrabold">
 				{minutes}:{seconds.toString().padStart(2, "0")}
 			</div>
+
 			<Button
+				className={twMerge(ticking && "bg-[#C20114] text-white")}
 				variant={"pomodoro"}
 				size={"pomodoro"}
 				onClick={() => setTicking((ticking) => !ticking)}
