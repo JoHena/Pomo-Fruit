@@ -10,6 +10,7 @@ export function Pomodoro({}) {
 	return (
 		<>
 			<Navbar ticking={ticking} />
+
 			<section
 				className={twMerge(
 					"h-screen flex flex-col items-center tracking-wide gap-20 transition-colors duration-500",
@@ -21,7 +22,7 @@ export function Pomodoro({}) {
 				<div className="w-1/3 flex flex-col gap-5">
 					<h2
 						className={twMerge(
-							"border-b text-center p-3",
+							"border-b-2 text-center p-3 font-bold",
 							ticking ? "border-[#13293D]" : "border-white"
 						)}
 					>
@@ -29,8 +30,10 @@ export function Pomodoro({}) {
 					</h2>
 					<div
 						className={twMerge(
-							"p-3 rounded-md border-white border flex justify-between items-center text-l",
-							ticking ? "border-[#13293D]" : "border-white"
+							"p-4 rounded-md border-white border flex justify-between items-center text-l",
+							ticking
+								? "border-[#13293D] bg-[#13293D] text-white"
+								: "border-white"
 						)}
 					>
 						Add Task <span className="text-xl">+</span>

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={(inter.className, "font-xl font-semibold")}>
+			<body className={`font-xl font-semibold ${inter.className}`}>
 				{children}
 			</body>
 		</html>

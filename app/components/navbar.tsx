@@ -5,7 +5,7 @@ export function Navbar({ ticking }: { ticking: boolean }) {
 	return (
 		<div
 			className={twMerge(
-				"flex justify-center font-bold tracking-wide pt-5 pb-10 transition-colors duration-500",
+				"flex justify-center font-bold tracking-wide pt-5 pb-16 transition-colors duration-500",
 				ticking ? "bg-[#88D18A] text-[#13293D]" : "bg-[#13293D]"
 			)}
 		>

@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { twMerge } from "tailwind-merge";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { calculatePercentage } from "../helpers/PercentageCalc";
 
 interface ITimer {
 	ticking: boolean;
@@ -11,6 +14,7 @@ interface ITimer {
 export function Timer({ ticking, setTicking }: ITimer) {
 	const [minutes, setMinutes] = useState(25);
 	const [seconds, setSeconds] = useState(0);
+	const [percentage, setPercentage] = useState(0);
 
 	const clockTicking = () => {
 		if (minutes === 0 && seconds === 0) {
@@ -25,8 +29,11 @@ export function Timer({ ticking, setTicking }: ITimer) {
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (ticking) clockTicking();
-		}, 1000);
+			if (ticking) {
+				setPercentage(calculatePercentage(minutes + seconds * 0.01));
+				clockTicking();
+			}
+		}, 100);
 
 		return () => {
 			clearInterval(timer);
@@ -35,14 +42,18 @@ export function Timer({ ticking, setTicking }: ITimer) {
 
 	return (
 		<div className="flex flex-col gap-8 items-center">
-			<div className="flex justify-between">
-				<Button variant={"ghost"}>Pomodoro</Button>
-				<Button variant={"ghost"}>Short Break</Button>
-				<Button variant={"ghost"}>Long Break</Button>
-			</div>
-
 			<div className="text-8xl font-extrabold">
-				{minutes}:{seconds.toString().padStart(2, "0")}
+				<CircularProgressbar
+					styles={buildStyles({
+						textColor: ticking ? "#13293D" : "white",
+						pathColor: ticking
+							? "rgba(217, 219, 241, 1)"
+							: `rgba(136, 209, 138, 100)`,
+						trailColor: "#13293D",
+					})}
+					value={percentage}
+					text={`${minutes}:${seconds.toString().padStart(2, "0")}`}
+				/>
 			</div>
 
 			<Button
