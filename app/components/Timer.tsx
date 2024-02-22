@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { twMerge } from "tailwind-merge";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 import { calculatePercentage } from "../helpers/PercentageCalc";
+import "react-circular-progressbar/dist/styles.css";
 
 interface ITimer {
 	ticking: boolean;
@@ -33,7 +33,7 @@ export function Timer({ ticking, setTicking }: ITimer) {
 				setPercentage(calculatePercentage(minutes + seconds * 0.01));
 				clockTicking();
 			}
-		}, 100);
+		}, 1000);
 
 		return () => {
 			clearInterval(timer);

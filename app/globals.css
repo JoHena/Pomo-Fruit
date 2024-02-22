@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		appearance: none;
+		margin: 0;
+	}
+	input[type="number"] {
+		appearance: textfield;
+	}
+
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
