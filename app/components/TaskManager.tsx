@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
 import { TaskCard } from "./TaskCard";
+import { Task } from "../typing";
 
 export function TaskManager({ ticking }: { ticking: boolean }) {
 	const [active, setActive] = useState(false);
+	const [tasks, setTasks] = useState<Task[]>([]);
 
 	return (
 		<div className="w-1/3 flex flex-col gap-5 transition-all">
@@ -17,14 +19,20 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 				Task
 			</h2>
 
-			<TaskCard />
+			{tasks.length > 0 && (
+				<ul className="flex flex-col gap-5">
+					{tasks.map((task) => (
+						<TaskCard task={task} setTasks={setTasks} />
+					))}
+				</ul>
+			)}
 
 			{active ? (
-				<TaskForm setActive={setActive} />
+				<TaskForm setActive={setActive} setTasks={setTasks} />
 			) : (
 				<button
 					className={twMerge(
-						"p-4 rounded-md bg-white text-PomoInActive flex transition-all duration-500 h-16 shadow-xl",
+						"p-4 rounded-md bg-white text-PomoInActive flex transition-all duration-500 h-16 shadow-xl mb-32",
 						ticking && "bg-PomoInActive text-white"
 					)}
 					onClick={() => {

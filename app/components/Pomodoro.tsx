@@ -14,7 +14,7 @@ export function Pomodoro({}) {
 
 			<section
 				className={twMerge(
-					"h-screen flex flex-col items-center tracking-wide gap-20 transition-colors duration-500",
+					"flex flex-col items-center min-h-screen tracking-wide gap-20 transition-colors duration-500",
 					ticking ? "bg-PomoActive text-PomoInActive" : "bg-PomoInActive"
 				)}
 			>
