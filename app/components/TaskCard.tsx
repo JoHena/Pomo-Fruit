@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { TaskForm } from "./TaskForm";
+import React, { ReactNode } from "react";
 import { Task } from "../typing";
 
 interface ITaskCard {
 	task: Task;
-	setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+	changeMode: (id: number, edit: boolean) => void;
+	taskForm: ReactNode;
 }
 
-export function TaskCard({ task, setTasks }: ITaskCard) {
-	const [edit, setEdit] = useState(false);
-
+export function TaskCard({ task, taskForm, changeMode }: ITaskCard) {
 	return (
 		<>
-			{edit ? (
-				<TaskForm task={task} setTasks={setTasks} setActive={setEdit} />
+			{task.editMode ? (
+				taskForm
 			) : (
-				<li className="flex items-center justify-between gap-2 bg-white text-PomoInActive rounded-md rounded-l-sm px-4 py-2 border-l-8 border-PomoActive">
+				<li className="flex items-center justify-between gap-2 bg-white text-PomoInActive rounded-md rounded-l-sm px-4 py-2 border-l-8 border-PomoActive shadow-md">
 					{task.taskName}
 					<button
 						className="material-symbols-outlined text-xl font-extrabold shadow-xl"
-						onClick={() => setEdit(true)}
+						onClick={() => changeMode(task.id, true)}
 					>
 						more_vert
 					</button>

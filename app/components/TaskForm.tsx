@@ -3,17 +3,32 @@ import React, { useState } from "react";
 import { Task } from "../typing";
 
 interface ITaskForm {
-	setActive: React.Dispatch<React.SetStateAction<boolean>>;
-	setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 	task?: Task;
+	setActive?: React.Dispatch<React.SetStateAction<boolean>>;
+	taskActions: {
+		addTask: (taskName: string, pomoCount: number) => void;
+		editTask: (id: number, taskName: string, pomoCount: number) => void;
+		changeMode: (id: number, edit: boolean) => void;
+	};
 }
 
-export function TaskForm({ setActive, setTasks, task }: ITaskForm) {
+export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 	const [pomoCount, setPomoCount] = useState(task ? task.pomodoroTime : 1);
 	const [taskName, setTaskName] = useState(task && task.taskName);
 
+	const handleSave = () => {
+		if (!taskName) return;
+
+		if (task?.editMode) {
+			taskActions.editTask(task!.id, taskName, pomoCount);
+		} else {
+			taskActions.addTask(taskName, pomoCount);
+			setActive && setActive(false);
+		}
+	};
+
 	return (
-		<form className="grid p-4 rounded-md w-full gap-3 bg-white text-black animate-task-down overflow-hidden">
+		<form className="grid p-4 rounded-md w-full gap-3 bg-white text-black animate-task-down overflow-hidden border-l-8 border-PomoActive shadow-md">
 			<input
 				className="text-xl bg-transparent w-full appearance-none outline-none"
 				placeholder="What are you working on?"
@@ -30,7 +45,11 @@ export function TaskForm({ setActive, setTasks, task }: ITaskForm) {
 					type="button"
 					className="shadow-sm shadow-PomoInActive w-20 rounded-lg p-2"
 					onClick={() => {
-						setActive(false);
+						if (setActive) {
+							setActive(false);
+							return;
+						}
+						taskActions.changeMode(task!.id, false);
 					}}
 				>
 					Cancel
@@ -39,12 +58,7 @@ export function TaskForm({ setActive, setTasks, task }: ITaskForm) {
 				<button
 					type="button"
 					className="shadow-sm bg-PomoInActive w-20 text-white shadow-PomoInActive rounded-lg border p-2"
-					onClick={() => {
-						setTasks((prev: any) => {
-							return [...prev, { taskName: taskName, pomodoroTime: pomoCount }];
-						});
-						setActive(false);
-					}}
+					onClick={handleSave}
 				>
 					Save
 				</button>
