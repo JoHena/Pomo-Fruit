@@ -9,7 +9,7 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 	const { tasks, ...taskActions } = useTasks();
 
 	return (
-		<div className="w-1/3 flex flex-col gap-5 transition-all">
+		<div className="w-[90vw] xl:w-[20vw] flex flex-col gap-5">
 			<h2
 				className={twMerge(
 					"border-b-2 text-center p-3 font-bold",
@@ -23,6 +23,7 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 				<ul className="flex flex-col gap-5">
 					{tasks.map((task, index) => (
 						<TaskCard
+							ticking={ticking}
 							key={index}
 							task={task}
 							changeMode={taskActions.changeMode}
@@ -37,14 +38,14 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 			) : (
 				<button
 					className={twMerge(
-						"p-4 rounded-md bg-white text-PomoInActive flex transition-all duration-500 h-16 shadow-md mb-32",
+						"p-4 rounded-md bg-white text-PomoInActive flex h-16 shadow-md mb-32",
 						ticking && "bg-PomoInActive text-white"
 					)}
 					onClick={() => {
 						!active && setActive(!active);
 					}}
 				>
-					<div className="text-PomoInActive w-full text-center">
+					<div className={twMerge("w-full text-center")}>
 						Add Task <span className="text-xl">+</span>
 					</div>
 				</button>

@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`font-xl font-semibold ${inter.className}`}>
+			<body
+				className={`font-xl font-semibold bg-PomoInActive ${inter.className} overflow-y-scroll no-scrollbar`}
+			>
 				{children}
 			</body>
 		</html>

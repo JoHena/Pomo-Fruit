@@ -28,8 +28,9 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 	};
 
 	return (
-		<form className="grid p-4 rounded-md w-full gap-3 bg-white text-black animate-task-down overflow-hidden border-l-8 border-PomoActive shadow-md">
+		<form className="grid p-4 rounded-md w-full gap-3 bg-white text-black animate-task-down overflow-hidden shadow-md">
 			<input
+				autoFocus
 				className="text-xl bg-transparent w-full appearance-none outline-none"
 				placeholder="What are you working on?"
 				value={taskName}
