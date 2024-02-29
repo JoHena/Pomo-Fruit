@@ -17,12 +17,12 @@ export function TaskCard({ task, taskForm, changeMode, ticking }: ITaskCard) {
 			) : (
 				<li
 					className={twMerge(
-						"flex items-center justify-between bg-white text-PomoInActive rounded-md rounded-l-sm px-4 py-2 border-l-8 shadow-md",
-						ticking ? "border-PomoInActive" : "border-PomoActive"
+						"flex items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive shadow-md",
+						ticking ? "border-PomoInActive" : "border-PomoActive",
 					)}
 				>
-					<div className="flex justify-between items-center w-[90%]">
-						<div className="flex gap-3 items-center">
+					<div className="flex w-[90%] items-center justify-between">
+						<div className="flex items-center gap-3">
 							<span className="material-symbols-outlined">check_circle</span>
 							<span>{task.taskName}</span>
 						</div>

@@ -3,6 +3,7 @@ import { Task } from "../typing";
 
 export function useTasks() {
 	const [tasks, setTasks] = useState<Task[]>([]);
+	const [totalTime, setTotalTime] = useState(0);
 
 	const addTask = (taskName: string, pomoCount: number) => {
 		setTasks((prev: any) => {
@@ -16,13 +17,18 @@ export function useTasks() {
 				},
 			];
 		});
+
+		setTotalTime((prev) => prev + pomoCount);
 	};
 
 	const editTask = (id: number, taskName: string, pomoCount: number) => {
 		setTasks((prev: any) => {
 			const index = prev.findIndex(
-				(currentTask: Task) => currentTask.id === id
+				(currentTask: Task) => currentTask.id === id,
 			);
+			setTotalTime((time) => {
+				prev.pomoCount;
+			});
 			const newTasks = [...prev];
 			newTasks[index] = {
 				id: newTasks[index].id,
@@ -52,5 +58,5 @@ export function useTasks() {
 	//
 	// };
 
-	return { tasks, addTask, editTask, changeMode };
+	return { tasks, totalTime, addTask, editTask, changeMode };
 }

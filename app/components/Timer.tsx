@@ -41,8 +41,8 @@ export function Timer({ ticking, setTicking }: ITimer) {
 	}, [seconds, minutes, ticking]);
 
 	return (
-		<div className="flex flex-col gap-8 items-center">
-			<div className="text-8xl font-extrabold">
+		<div className="flex flex-col items-center gap-8 xl:w-[55%]">
+			<div className="w-full text-8xl font-extrabold">
 				<CircularProgressbar
 					styles={buildStyles({
 						textColor: ticking ? "#13293D" : "white",

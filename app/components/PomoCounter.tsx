@@ -8,12 +8,12 @@ interface ICounter {
 
 export function PomoCounter({ count, setCount }: ICounter) {
 	return (
-		<label className="text-start flex flex-col gap-3 w-2/3">
+		<label className="flex w-2/3 flex-col gap-3 text-start">
 			Estimated Pomodoros
-			<div className="flex gap-3 w-full">
+			<div className="flex w-full gap-3">
 				<input
 					type="number"
-					className="text-xl text-white text-center w-12 outline-none bg-PomoInActive rounded-sm"
+					className="w-12 rounded-sm bg-PomoInActive text-center text-xl text-white outline-none"
 					value={count}
 				></input>
 

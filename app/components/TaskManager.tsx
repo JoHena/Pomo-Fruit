@@ -9,14 +9,14 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 	const { tasks, ...taskActions } = useTasks();
 
 	return (
-		<div className="w-[90vw] xl:w-[20vw] flex flex-col gap-5">
+		<div className="flex w-[90vw] flex-col items-center gap-5 xl:w-[90%]">
 			<h2
 				className={twMerge(
-					"border-b-2 text-center p-3 font-bold",
-					ticking ? "border-[#13293D]" : "border-white"
+					"w-full border-b-2 p-3 text-center font-bold",
+					ticking ? "border-[#13293D]" : "border-white",
 				)}
 			>
-				Task
+				Tasks
 			</h2>
 
 			{tasks.length > 0 && (
@@ -38,8 +38,8 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 			) : (
 				<button
 					className={twMerge(
-						"p-4 rounded-md bg-white text-PomoInActive flex h-16 shadow-md mb-32",
-						ticking && "bg-PomoInActive text-white"
+						"flex h-16 w-full rounded-md bg-white p-4 text-PomoInActive shadow-md",
+						ticking && "bg-PomoInActive text-white",
 					)}
 					onClick={() => {
 						!active && setActive(!active);
@@ -50,6 +50,7 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 					</div>
 				</button>
 			)}
+			<div>Pomos: 0/2 25min remaining</div>
 		</div>
 	);
 }

@@ -12,8 +12,8 @@ export function AdderButton({ className, type, onClick }: AdderButton) {
 		<button
 			type="button"
 			className={twMerge(
-				"shadow-sm shadow-PomoInActive rounded-lg w-10 border flex justify-center items-center p-2 pointer-events-auto",
-				className
+				"pointer-events-auto flex w-10 items-center justify-center rounded-lg border p-2 shadow-sm shadow-PomoInActive",
+				className,
 			)}
 			onClick={onClick}
 		>

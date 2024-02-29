@@ -28,10 +28,10 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 	};
 
 	return (
-		<form className="grid p-4 rounded-md w-full gap-3 bg-white text-black animate-task-down overflow-hidden shadow-md">
+		<form className="grid w-full animate-task-down gap-3 overflow-hidden rounded-md bg-white p-4 text-black shadow-md">
 			<input
 				autoFocus
-				className="text-xl bg-transparent w-full appearance-none outline-none"
+				className="w-full appearance-none bg-transparent text-xl outline-none"
 				placeholder="What are you working on?"
 				value={taskName}
 				onChange={(e) => {
@@ -44,7 +44,7 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 			<div className="flex items-center justify-end gap-5">
 				<button
 					type="button"
-					className="shadow-sm shadow-PomoInActive w-20 rounded-lg p-2"
+					className="w-20 rounded-lg p-2 shadow-sm shadow-PomoInActive"
 					onClick={() => {
 						if (setActive) {
 							setActive(false);
@@ -58,7 +58,7 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 
 				<button
 					type="button"
-					className="shadow-sm bg-PomoInActive w-20 text-white shadow-PomoInActive rounded-lg border p-2"
+					className="w-20 rounded-lg border bg-PomoInActive p-2 text-white shadow-sm shadow-PomoInActive"
 					onClick={handleSave}
 				>
 					Save
