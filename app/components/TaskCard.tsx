@@ -17,7 +17,7 @@ export function TaskCard({ task, taskForm, changeMode, ticking }: ITaskCard) {
 			) : (
 				<li
 					className={twMerge(
-						"flex items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive shadow-md",
+						"shadow-m flex h-12 items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive",
 						ticking ? "border-PomoInActive" : "border-PomoActive",
 					)}
 				>

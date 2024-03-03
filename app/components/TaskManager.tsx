@@ -3,13 +3,32 @@ import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
 import { TaskCard } from "./TaskCard";
 import { useTasks } from "../helpers/Task";
+import { timerState } from "../typing";
 
-export function TaskManager({ ticking }: { ticking: boolean }) {
+export function TaskManager({
+	ticking,
+	finishedPomos,
+}: {
+	ticking: timerState;
+	finishedPomos: number;
+}) {
 	const [active, setActive] = useState(false);
-	const { tasks, ...taskActions } = useTasks();
+	const { tasks, totalTime, ...taskActions } = useTasks();
 
 	return (
-		<div className="flex w-[90vw] flex-col items-center gap-5 xl:w-[90%]">
+		<div className="flex w-[90vw] flex-col items-center gap-8 xl:w-[90%] xl:gap-6">
+			<div
+				className={twMerge(
+					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white",
+					ticking && "text-PomoInActive",
+					tasks.length <= 0 && "hidden",
+				)}
+			>
+				<span>
+					{finishedPomos}/{totalTime} Pomodros
+				</span>
+				|<span>Time remaining: {totalTime * 25} min</span>
+			</div>
 			<h2
 				className={twMerge(
 					"w-full border-b-2 p-3 text-center font-bold",
@@ -20,7 +39,7 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 			</h2>
 
 			{tasks.length > 0 && (
-				<ul className="flex flex-col gap-5">
+				<ul className="flex w-full flex-col gap-5">
 					{tasks.map((task, index) => (
 						<TaskCard
 							ticking={ticking}
@@ -50,7 +69,6 @@ export function TaskManager({ ticking }: { ticking: boolean }) {
 					</div>
 				</button>
 			)}
-			<div>Pomos: 0/2 25min remaining</div>
 		</div>
 	);
 }

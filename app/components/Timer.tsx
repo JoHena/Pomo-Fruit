@@ -4,21 +4,23 @@ import { Button } from "@/components/ui/button";
 import { twMerge } from "tailwind-merge";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { calculatePercentage } from "../helpers/PercentageCalc";
+import { timerState } from "../typing";
 import "react-circular-progressbar/dist/styles.css";
 
 interface ITimer {
-	ticking: boolean;
-	setTicking: React.Dispatch<React.SetStateAction<boolean>>;
+	ticking: timerState;
+	setTicking: React.Dispatch<React.SetStateAction<timerState>>;
+	setFinishedCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function Timer({ ticking, setTicking }: ITimer) {
+export function Timer({ ticking, setTicking, setFinishedCount }: ITimer) {
 	const [minutes, setMinutes] = useState(25);
 	const [seconds, setSeconds] = useState(0);
 	const [percentage, setPercentage] = useState(0);
 
 	const clockTicking = () => {
 		if (minutes === 0 && seconds === 0) {
-			alert("Times Up");
+			setFinishedCount((prev) => prev + 1);
 		} else if (seconds === 0) {
 			setMinutes((minute) => minute - 1);
 			setSeconds(59);
@@ -29,11 +31,11 @@ export function Timer({ ticking, setTicking }: ITimer) {
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (ticking) {
+			if (ticking == timerState.Work) {
 				setPercentage(calculatePercentage(minutes + seconds * 0.01));
 				clockTicking();
 			}
-		}, 1000);
+		}, 1);
 
 		return () => {
 			clearInterval(timer);
@@ -41,7 +43,7 @@ export function Timer({ ticking, setTicking }: ITimer) {
 	}, [seconds, minutes, ticking]);
 
 	return (
-		<div className="flex flex-col items-center gap-8 xl:w-[55%]">
+		<div className="flex h-[55vh] flex-col items-center gap-8 xl:h-auto xl:w-[55%]">
 			<div className="w-full text-8xl font-extrabold">
 				<CircularProgressbar
 					styles={buildStyles({

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Task } from "../typing";
 
 export function useTasks() {
@@ -6,6 +6,10 @@ export function useTasks() {
 	const [totalTime, setTotalTime] = useState(0);
 
 	const addTask = (taskName: string, pomoCount: number) => {
+		setTotalTime((time) => {
+			return time + pomoCount;
+		});
+
 		setTasks((prev: any) => {
 			return [
 				...prev,
@@ -17,18 +21,16 @@ export function useTasks() {
 				},
 			];
 		});
-
-		setTotalTime((prev) => prev + pomoCount);
 	};
 
 	const editTask = (id: number, taskName: string, pomoCount: number) => {
+		const index = tasks.findIndex((currentTask: Task) => currentTask.id === id);
+
+		setTotalTime((time) => {
+			return time + pomoCount - tasks[index].pomodoroTime;
+		});
+
 		setTasks((prev: any) => {
-			const index = prev.findIndex(
-				(currentTask: Task) => currentTask.id === id,
-			);
-			setTotalTime((time) => {
-				prev.pomoCount;
-			});
 			const newTasks = [...prev];
 			newTasks[index] = {
 				id: newTasks[index].id,
