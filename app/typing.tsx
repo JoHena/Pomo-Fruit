@@ -1,5 +1,4 @@
 export enum timerState {
-	Off,
 	Work,
 	Rest,
 }

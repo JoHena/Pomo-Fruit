@@ -7,29 +7,30 @@ import { Navbar } from "./navbar";
 import { timerState } from "../typing";
 
 export function Pomodoro({}) {
-	const [ticking, setTicking] = useState<timerState>(0);
+	const [timer, setTimer] = useState({
+		ticking: false,
+		mode: timerState.Work,
+	});
 	const [finishedPomodoros, setFinishedPomodoros] = useState(0);
 
 	return (
 		<div
 			className={twMerge(
 				"flex min-h-screen flex-col items-center gap-[5vh] text-white transition-colors duration-500",
-				ticking ? "bg-PomoActive text-PomoInActive" : "bg-PomoInActive",
+				!timer.ticking || timer.mode === timerState.Rest
+					? "bg-PomoInActive"
+					: "bg-PomoActive text-PomoInActive",
 			)}
 		>
 			<Navbar />
 
-			<section
-				className={twMerge(
-					"flex flex-col items-center gap-12 py-12 tracking-wide xl:w-1/3",
-				)}
-			>
+			<section className="flex flex-col items-center gap-12 py-12 tracking-wide xl:w-1/3">
 				<Timer
-					ticking={ticking}
-					setTicking={setTicking}
+					timer={timer}
+					setTicking={setTimer}
 					setFinishedCount={setFinishedPomodoros}
 				/>
-				<TaskManager ticking={ticking} finishedPomos={finishedPomodoros} />
+				<TaskManager timer={timer} finishedPomos={finishedPomodoros} />
 			</section>
 		</div>
 	);

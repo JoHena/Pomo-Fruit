@@ -6,10 +6,13 @@ import { useTasks } from "../helpers/Task";
 import { timerState } from "../typing";
 
 export function TaskManager({
-	ticking,
+	timer,
 	finishedPomos,
 }: {
-	ticking: timerState;
+	timer: {
+		ticking: boolean;
+		mode: timerState;
+	};
 	finishedPomos: number;
 }) {
 	const [active, setActive] = useState(false);
@@ -20,7 +23,9 @@ export function TaskManager({
 			<div
 				className={twMerge(
 					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white",
-					ticking && "text-PomoInActive",
+					timer.ticking &&
+						timer.mode === timerState.Work &&
+						"text-PomoInActive",
 					tasks.length <= 0 && "hidden",
 				)}
 			>
@@ -32,7 +37,9 @@ export function TaskManager({
 			<h2
 				className={twMerge(
 					"w-full border-b-2 p-3 text-center font-bold",
-					ticking ? "border-[#13293D]" : "border-white",
+					timer.ticking && timer.mode === timerState.Work
+						? "border-[#13293D]"
+						: "border-white",
 				)}
 			>
 				Tasks
@@ -42,7 +49,7 @@ export function TaskManager({
 				<ul className="flex w-full flex-col gap-5">
 					{tasks.map((task, index) => (
 						<TaskCard
-							ticking={ticking}
+							timer={timer}
 							key={index}
 							task={task}
 							changeMode={taskActions.changeMode}
@@ -58,13 +65,15 @@ export function TaskManager({
 				<button
 					className={twMerge(
 						"flex h-16 w-full rounded-md bg-white p-4 text-PomoInActive shadow-md",
-						ticking && "bg-PomoInActive text-white",
+						timer.ticking &&
+							timer.mode === timerState.Work &&
+							"bg-PomoInActive text-white",
 					)}
 					onClick={() => {
 						!active && setActive(!active);
 					}}
 				>
-					<div className={twMerge("w-full text-center")}>
+					<div className="w-full text-center">
 						Add Task <span className="text-xl">+</span>
 					</div>
 				</button>

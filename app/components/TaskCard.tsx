@@ -1,15 +1,18 @@
 import React, { ReactNode } from "react";
-import { Task } from "../typing";
+import { Task, timerState } from "../typing";
 import { twMerge } from "tailwind-merge";
 
 interface ITaskCard {
-	ticking: boolean;
+	timer: {
+		ticking: boolean;
+		mode: timerState;
+	};
 	task: Task;
 	changeMode: (id: number, edit: boolean) => void;
 	taskForm: ReactNode;
 }
 
-export function TaskCard({ task, taskForm, changeMode, ticking }: ITaskCard) {
+export function TaskCard({ task, taskForm, changeMode, timer }: ITaskCard) {
 	return (
 		<>
 			{task.editMode ? (
@@ -18,7 +21,9 @@ export function TaskCard({ task, taskForm, changeMode, ticking }: ITaskCard) {
 				<li
 					className={twMerge(
 						"shadow-m flex h-12 items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive",
-						ticking ? "border-PomoInActive" : "border-PomoActive",
+						timer.ticking && timer.mode === timerState.Work
+							? "border-PomoInActive"
+							: "border-PomoActive",
 					)}
 				>
 					<div className="flex w-[90%] items-center justify-between">
