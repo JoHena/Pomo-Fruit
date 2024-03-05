@@ -1,6 +1,9 @@
 import React, { ReactNode } from "react";
 import { Task, timerState } from "../typing";
 import { twMerge } from "tailwind-merge";
+import { changeMode } from "../redux/features/taskSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
 
 interface ITaskCard {
 	timer: {
@@ -8,11 +11,12 @@ interface ITaskCard {
 		mode: timerState;
 	};
 	task: Task;
-	changeMode: (id: number, edit: boolean) => void;
 	taskForm: ReactNode;
 }
 
-export function TaskCard({ task, taskForm, changeMode, timer }: ITaskCard) {
+export function TaskCard({ task, taskForm, timer }: ITaskCard) {
+	const dispatch = useDispatch<AppDispatch>();
+
 	return (
 		<>
 			{task.editMode ? (
@@ -31,12 +35,14 @@ export function TaskCard({ task, taskForm, changeMode, timer }: ITaskCard) {
 							<span className="material-symbols-outlined">check_circle</span>
 							<span>{task.taskName}</span>
 						</div>
-						<span>0/{task.pomodoroTime}</span>
+						<span>0/{task.pomoTime}</span>
 					</div>
 
 					<button
 						className="material-symbols-outlined text-xl font-extrabold shadow-xl"
-						onClick={() => changeMode(task.id, true)}
+						onClick={() => {
+							dispatch(changeMode({ id: task!.id, mode: true }));
+						}}
 					>
 						more_vert
 					</button>

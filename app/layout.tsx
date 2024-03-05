@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./globalIcons.css";
+import { ReduxProvider } from "./redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`font-xl font-semibold bg-PomoInActive ${inter.className} overflow-y-scroll no-scrollbar`}
+				className={`font-xl bg-PomoInActive font-semibold ${inter.className} no-scrollbar overflow-y-scroll`}
 			>
-				{children}
+				<ReduxProvider>{children}</ReduxProvider>
 			</body>
 		</html>
 	);

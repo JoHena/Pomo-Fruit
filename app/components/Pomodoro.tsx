@@ -11,6 +11,7 @@ export function Pomodoro({}) {
 		ticking: false,
 		mode: timerState.Work,
 	});
+
 	const [finishedPomodoros, setFinishedPomodoros] = useState(0);
 
 	return (

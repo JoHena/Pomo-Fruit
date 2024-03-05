@@ -1,28 +1,27 @@
 import { PomoCounter } from "./PomoCounter";
 import React, { useState } from "react";
 import { Task } from "../typing";
+import { addTask, editTask, changeMode } from "../redux/features/taskSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
 
 interface ITaskForm {
 	task?: Task;
 	setActive?: React.Dispatch<React.SetStateAction<boolean>>;
-	taskActions: {
-		addTask: (taskName: string, pomoCount: number) => void;
-		editTask: (id: number, taskName: string, pomoCount: number) => void;
-		changeMode: (id: number, edit: boolean) => void;
-	};
 }
 
-export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
-	const [pomoCount, setPomoCount] = useState(task ? task.pomodoroTime : 1);
+export function TaskForm({ setActive, task }: ITaskForm) {
+	const [pomoTime, setPomoTime] = useState(task ? task.pomoTime : 1);
 	const [taskName, setTaskName] = useState(task && task.taskName);
+	const dispatch = useDispatch<AppDispatch>();
 
 	const handleSave = () => {
 		if (!taskName) return;
 
 		if (task?.editMode) {
-			taskActions.editTask(task!.id, taskName, pomoCount);
+			dispatch(editTask({ ...task, taskName, pomoTime }));
 		} else {
-			taskActions.addTask(taskName, pomoCount);
+			dispatch(addTask({ taskName, pomoTime }));
 			setActive && setActive(false);
 		}
 	};
@@ -39,7 +38,7 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 				}}
 			></input>
 
-			<PomoCounter count={pomoCount} setCount={setPomoCount} />
+			<PomoCounter count={pomoTime} setCount={setPomoTime} />
 
 			<div className="flex items-center justify-end gap-5">
 				<button
@@ -50,7 +49,7 @@ export function TaskForm({ setActive, taskActions, task }: ITaskForm) {
 							setActive(false);
 							return;
 						}
-						taskActions.changeMode(task!.id, false);
+						dispatch(changeMode({ id: task!.id, mode: false }));
 					}}
 				>
 					Cancel

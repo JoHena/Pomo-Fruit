@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
 import { TaskCard } from "./TaskCard";
-import { useTasks } from "../helpers/Task";
 import { timerState } from "../typing";
+import { useAppSelector } from "../redux/store";
 
 export function TaskManager({
 	timer,
-	finishedPomos,
 }: {
 	timer: {
 		ticking: boolean;
 		mode: timerState;
 	};
-	finishedPomos: number;
 }) {
 	const [active, setActive] = useState(false);
-	const { tasks, totalTime, ...taskActions } = useTasks();
+	const { tasks, totalTime, totalFinished } = useAppSelector(
+		(state) => state.tasksReducer.value,
+	);
 
 	return (
 		<div className="flex w-[90vw] flex-col items-center gap-8 xl:w-[90%] xl:gap-6">
@@ -30,7 +30,7 @@ export function TaskManager({
 				)}
 			>
 				<span>
-					{finishedPomos}/{totalTime} Pomodros
+					{totalFinished}/{totalTime} Pomodros
 				</span>
 				|<span>Time remaining: {totalTime * 25} min</span>
 			</div>
@@ -52,15 +52,14 @@ export function TaskManager({
 							timer={timer}
 							key={index}
 							task={task}
-							changeMode={taskActions.changeMode}
-							taskForm={<TaskForm task={task} taskActions={taskActions} />}
+							taskForm={<TaskForm task={task} />}
 						/>
 					))}
 				</ul>
 			)}
 
 			{active ? (
-				<TaskForm setActive={setActive} taskActions={taskActions} />
+				<TaskForm setActive={setActive} />
 			) : (
 				<button
 					className={twMerge(

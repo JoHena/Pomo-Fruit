@@ -6,7 +6,8 @@ export enum timerState {
 export interface Task {
 	id: number;
 	taskName: string;
-	pomodoroTime: number;
+	pomosFinished?: number;
+	pomoTime: number;
 	completed: boolean;
 	editMode: boolean;
 }
