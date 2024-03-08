@@ -1,5 +1,6 @@
 import { Task } from "@/app/typing";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { arrayMove } from "@dnd-kit/sortable";
 
 type InitialState = {
 	value: {
@@ -22,7 +23,7 @@ export const tasks = createSlice({
 			action: PayloadAction<{ taskName: string; pomoTime: number }>,
 		) => {
 			state.value.tasks.push({
-				id: state.value.tasks.length,
+				id: state.value.tasks.length + 1,
 				completed: false,
 				editMode: false,
 				...action.payload,
@@ -56,6 +57,21 @@ export const tasks = createSlice({
 			state.value.tasks = newTaskList;
 		},
 
+		changePosition: (
+			state,
+			action: PayloadAction<{ oldTaskID: number; newTaskID: number }>,
+		) => {
+			const { tasks } = state.value;
+			const originalPos = tasks.findIndex(
+				(task) => task.id === action.payload.oldTaskID,
+			);
+			const newPos = tasks.findIndex(
+				(task) => task.id === action.payload.newTaskID,
+			);
+
+			state.value.tasks = arrayMove(tasks, originalPos, newPos);
+		},
+
 		finishTask: (state, action: PayloadAction<{ id: number }>) => {
 			state.value.tasks[action.payload.id].completed = true;
 			state.value.totalFinished += 1;
@@ -64,5 +80,5 @@ export const tasks = createSlice({
 	},
 });
 
-export const { addTask, editTask, changeMode } = tasks.actions;
+export const { addTask, editTask, changeMode, changePosition } = tasks.actions;
 export default tasks.reducer;

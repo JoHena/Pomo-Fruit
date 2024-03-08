@@ -1,4 +1,4 @@
-import { timerState } from "../typing";
+import { ITimer, timerState } from "../typing";
 
 export function calculatePercentage(time: number, timer: timerState) {
 	// Slope of the line
@@ -21,20 +21,16 @@ export function calculatePercentage(time: number, timer: timerState) {
 	return percentage;
 }
 
-export function getStyle({
-	ticking,
-	mode,
-}: {
-	ticking: boolean;
-	mode: timerState;
-}) {
+export function getStyle({ isTicking, timerMode }: ITimer) {
 	let timerStyle = {
-		textColor: ticking ? "#13293D" : "white",
-		pathColor: ticking ? "rgba(217, 219, 241, 1)" : "rgba(136, 209, 138, 100)",
+		textColor: isTicking ? "#13293D" : "white",
+		pathColor: isTicking
+			? "rgba(217, 219, 241, 1)"
+			: "rgba(136, 209, 138, 100)",
 		trailColor: "#13293D",
 	};
 
-	if (mode === timerState.Rest) {
+	if (timerMode === timerState.Rest) {
 		timerStyle = {
 			textColor: "white",
 			pathColor: "rgba(136, 209, 138, 100)",

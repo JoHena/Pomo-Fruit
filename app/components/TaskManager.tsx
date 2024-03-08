@@ -1,18 +1,11 @@
 import React, { useState } from "react";
+import { ITimer, timerState } from "../typing";
 import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
-import { TaskCard } from "./TaskCard";
-import { timerState } from "../typing";
+import { SortableList } from "./SortableList";
 import { useAppSelector } from "../redux/store";
 
-export function TaskManager({
-	timer,
-}: {
-	timer: {
-		ticking: boolean;
-		mode: timerState;
-	};
-}) {
+export function TaskManager({ timerMode, isTicking }: ITimer) {
 	const [active, setActive] = useState(false);
 	const { tasks, totalTime, totalFinished } = useAppSelector(
 		(state) => state.tasksReducer.value,
@@ -23,9 +16,7 @@ export function TaskManager({
 			<div
 				className={twMerge(
 					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white",
-					timer.ticking &&
-						timer.mode === timerState.Work &&
-						"text-PomoInActive",
+					isTicking && timerMode === timerState.Work && "text-PomoInActive",
 					tasks.length <= 0 && "hidden",
 				)}
 			>
@@ -37,7 +28,7 @@ export function TaskManager({
 			<h2
 				className={twMerge(
 					"w-full border-b-2 p-3 text-center font-bold",
-					timer.ticking && timer.mode === timerState.Work
+					isTicking && timerMode === timerState.Work
 						? "border-[#13293D]"
 						: "border-white",
 				)}
@@ -45,18 +36,7 @@ export function TaskManager({
 				Tasks
 			</h2>
 
-			{tasks.length > 0 && (
-				<ul className="flex w-full flex-col gap-5">
-					{tasks.map((task, index) => (
-						<TaskCard
-							timer={timer}
-							key={index}
-							task={task}
-							taskForm={<TaskForm task={task} />}
-						/>
-					))}
-				</ul>
-			)}
+			{tasks.length > 0 && <SortableList tasks={tasks} />}
 
 			{active ? (
 				<TaskForm setActive={setActive} />
@@ -64,8 +44,8 @@ export function TaskManager({
 				<button
 					className={twMerge(
 						"flex h-16 w-full rounded-md bg-white p-4 text-PomoInActive shadow-md",
-						timer.ticking &&
-							timer.mode === timerState.Work &&
+						isTicking &&
+							timerMode === timerState.Work &&
 							"bg-PomoInActive text-white",
 					)}
 					onClick={() => {

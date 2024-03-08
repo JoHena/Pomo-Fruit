@@ -3,6 +3,11 @@ export enum timerState {
 	Rest,
 }
 
+export interface ITimer {
+	isTicking: boolean;
+	timerMode: timerState;
+}
+
 export interface Task {
 	id: number;
 	taskName: string;
