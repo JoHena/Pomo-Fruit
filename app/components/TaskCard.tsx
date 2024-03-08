@@ -52,7 +52,8 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 					</div>
 
 					<button
-						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl"
+						data-no-dnd="true"
+						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl transition-colors hover:text-blue-500"
 						onClick={() => {
 							dispatch(changeMode({ id: task!.id, mode: true }));
 						}}

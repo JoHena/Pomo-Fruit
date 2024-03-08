@@ -30,7 +30,14 @@ export function SortableList({ tasks }: ISortableList) {
 		dispatch(changePosition({ oldTaskID: active.id, newTaskID: over.id }));
 	};
 
-	const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+			activationConstraint: {
+				distance: 1,
+			},
+		}),
+		useSensor(TouchSensor),
+	);
 
 	return (
 		<ul className="flex w-full flex-col gap-5">
