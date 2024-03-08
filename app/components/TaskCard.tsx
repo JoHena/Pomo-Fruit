@@ -1,37 +1,61 @@
 import React, { ReactNode } from "react";
-import { Task } from "../typing";
+import { ITimer, Task, timerState } from "../typing";
 import { twMerge } from "tailwind-merge";
+import { changeMode } from "../redux/features/taskSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useAppSelector } from "../redux/store";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface ITaskCard {
-	ticking: boolean;
 	task: Task;
-	changeMode: (id: number, edit: boolean) => void;
 	taskForm: ReactNode;
 }
 
-export function TaskCard({ task, taskForm, changeMode, ticking }: ITaskCard) {
+export function TaskCard({ task, taskForm }: ITaskCard) {
+	const dispatch = useDispatch<AppDispatch>();
+	const { isTicking, timerMode } = useAppSelector(
+		(state) => state.timerReducer.value,
+	);
+
+	const { attributes, listeners, transition, transform, setNodeRef } =
+		useSortable({ id: task.id, animateLayoutChanges: () => false });
+
+	const style = {
+		transition,
+		transform: CSS.Transform.toString(transform),
+	};
+
 	return (
 		<>
 			{task.editMode ? (
 				taskForm
 			) : (
 				<li
+					ref={setNodeRef}
 					className={twMerge(
-						"flex items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive shadow-md",
-						ticking ? "border-PomoInActive" : "border-PomoActive",
+						"shadow-m flex h-12 touch-none items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive",
+						isTicking && timerMode === timerState.Work
+							? "border-PomoInActive"
+							: "border-PomoActive",
 					)}
+					{...attributes}
+					{...listeners}
+					style={style}
 				>
 					<div className="flex w-[90%] items-center justify-between">
 						<div className="flex items-center gap-3">
 							<span className="material-symbols-outlined">check_circle</span>
 							<span>{task.taskName}</span>
 						</div>
-						<span>0/{task.pomodoroTime}</span>
+						<span>0/{task.pomoTime}</span>
 					</div>
 
 					<button
-						className="material-symbols-outlined text-xl font-extrabold shadow-xl"
-						onClick={() => changeMode(task.id, true)}
+						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl"
+						onClick={() => {
+							dispatch(changeMode({ id: task!.id, mode: true }));
+						}}
 					>
 						more_vert
 					</button>

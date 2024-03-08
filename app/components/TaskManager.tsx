@@ -1,56 +1,62 @@
 import React, { useState } from "react";
+import { ITimer, timerState } from "../typing";
 import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
-import { TaskCard } from "./TaskCard";
-import { useTasks } from "../helpers/Task";
+import { SortableList } from "./SortableList";
+import { useAppSelector } from "../redux/store";
 
-export function TaskManager({ ticking }: { ticking: boolean }) {
+export function TaskManager({ timerMode, isTicking }: ITimer) {
 	const [active, setActive] = useState(false);
-	const { tasks, ...taskActions } = useTasks();
+	const { tasks, totalTime, totalFinished } = useAppSelector(
+		(state) => state.tasksReducer.value,
+	);
 
 	return (
-		<div className="flex w-[90vw] flex-col items-center gap-5 xl:w-[90%]">
+		<div className="flex w-[90vw] flex-col items-center gap-8 xl:w-[90%] xl:gap-6">
+			<div
+				className={twMerge(
+					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white",
+					isTicking && timerMode === timerState.Work && "text-PomoInActive",
+					tasks.length <= 0 && "hidden",
+				)}
+			>
+				<span>
+					{totalFinished}/{totalTime} Pomodros
+				</span>
+				|<span>Time remaining: {totalTime * 25} min</span>
+			</div>
 			<h2
 				className={twMerge(
 					"w-full border-b-2 p-3 text-center font-bold",
-					ticking ? "border-[#13293D]" : "border-white",
+					isTicking && timerMode === timerState.Work
+						? "border-[#13293D]"
+						: "border-white",
 				)}
 			>
 				Tasks
 			</h2>
 
-			{tasks.length > 0 && (
-				<ul className="flex flex-col gap-5">
-					{tasks.map((task, index) => (
-						<TaskCard
-							ticking={ticking}
-							key={index}
-							task={task}
-							changeMode={taskActions.changeMode}
-							taskForm={<TaskForm task={task} taskActions={taskActions} />}
-						/>
-					))}
-				</ul>
-			)}
+			{tasks.length > 0 && <SortableList tasks={tasks} />}
 
 			{active ? (
-				<TaskForm setActive={setActive} taskActions={taskActions} />
+				<TaskForm setActive={setActive} />
 			) : (
 				<button
 					className={twMerge(
 						"flex h-16 w-full rounded-md bg-white p-4 text-PomoInActive shadow-md",
-						ticking && "bg-PomoInActive text-white",
+						isTicking &&
+							timerMode === timerState.Work &&
+							"bg-PomoInActive text-white",
 					)}
 					onClick={() => {
 						!active && setActive(!active);
 					}}
 				>
-					<div className={twMerge("w-full text-center")}>
+					<div className="w-full text-center">
 						Add Task <span className="text-xl">+</span>
 					</div>
 				</button>
 			)}
-			<div>Pomos: 0/2 25min remaining</div>
 		</div>
 	);
 }
