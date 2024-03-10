@@ -1,4 +1,6 @@
 import React from "react";
+import { LoginButton } from "./LoginDialog";
+import { SettingsButton } from "./SettingsButton";
 
 export function Navbar() {
 	return (
@@ -8,13 +10,17 @@ export function Navbar() {
 				<h1>Tempo Orbit</h1>
 			</div>
 			<ul className="flex items-center gap-8 xl:gap-4">
-				<li className="hidden xl:block">Settings</li>
+				<li className="hidden xl:block">
+					<SettingsButton />
+				</li>
 				<li className="xl:hidden">
 					<span className="material-symbols-outlined rounded-lg bg-PomoActive bg-opacity-40 p-0.5">
 						settings
 					</span>
 				</li>
-				<li className="hidden xl:block">Login</li>
+				<li className="hidden xl:block">
+					<LoginButton />
+				</li>
 				<li className="xl:hidden">
 					<span className="material-symbols-outlined rounded-lg bg-PomoActive bg-opacity-40 p-0.5">
 						account_circle

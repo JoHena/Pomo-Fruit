@@ -2,7 +2,7 @@
 import { Timer } from "@/app/components/Timer";
 import { TaskManager } from "./TaskManager";
 import { twMerge } from "tailwind-merge";
-import { Navbar } from "./navbar";
+import { Navbar } from "./Navbar";
 import { timerState } from "../typing";
 import { useAppSelector } from "../redux/store";
 
