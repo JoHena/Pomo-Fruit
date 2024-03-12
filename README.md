@@ -2,6 +2,10 @@
 
 #Features
   - Variable timers for Work and Rest
-  - Tasks separation
+  - Task list
   - Task completion
   - Customizable timer.
+
+#Pending Features
+  - Statistics
+  - Login
