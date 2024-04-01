@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginButton } from "./Login/LoginDialog";
+import { LoginButton } from "./Forms/Login/LoginDialog";
 import { SettingsButton } from "./SettingsButton";
 
 export function Navbar() {

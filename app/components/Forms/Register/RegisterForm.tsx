@@ -1,5 +1,5 @@
 "use client";
-import { LoginSchema } from "../../schemas";
+import { LoginSchema } from "../../../schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -15,10 +15,10 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import z from "zod";
-import FormError from "./FormError";
-import FormSuccess from "./FormSuccess";
+import FormError from "../FormError";
+import FormSuccess from "../FormSuccess";
 
-export function LoginForm() {
+export function RegisterForm() {
 	const [loginResponse, setLoginResponse] = useState<{
 		error: boolean;
 		message: string;
