@@ -20,6 +20,7 @@ export function TaskForm({ setActive, task }: ITaskForm) {
 
 		if (task?.editMode) {
 			dispatch(editTask({ ...task, taskName, pomoTime }));
+			dispatch(changeMode({ id: task!.id, mode: false }));
 		} else {
 			dispatch(addTask({ taskName, pomoTime }));
 			setActive && setActive(false);

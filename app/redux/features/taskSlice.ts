@@ -22,6 +22,7 @@ export const tasks = createSlice({
 			state,
 			action: PayloadAction<{ taskName: string; pomoTime: number }>,
 		) => {
+			console.log(state.value.tasks.length + 1);
 			state.value.tasks.push({
 				id: state.value.tasks.length + 1,
 				completed: false,
@@ -35,9 +36,9 @@ export const tasks = createSlice({
 		editTask: (state, action: PayloadAction<Task>) => {
 			state.value.totalTime =
 				state.value.totalTime -
-				state.value.tasks[action.payload.id].pomoTime +
+				state.value.tasks[action.payload.id - 1].pomoTime +
 				action.payload.pomoTime;
-			state.value.tasks[action.payload.id] = action.payload;
+			state.value.tasks[action.payload.id - 1] = action.payload;
 		},
 
 		changeMode: (
