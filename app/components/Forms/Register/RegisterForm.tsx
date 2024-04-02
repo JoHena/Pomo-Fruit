@@ -1,10 +1,10 @@
 "use client";
-import { LoginSchema } from "../../../schemas";
+import { RegisterSchema } from "../../../schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 import { useState, useTransition } from "react";
 import {
 	Form,
@@ -26,17 +26,17 @@ export function RegisterForm() {
 
 	const [isPending, startTransition] = useTransition();
 
-	const form = useForm<z.infer<typeof LoginSchema>>({
-		resolver: zodResolver(LoginSchema),
+	const form = useForm<z.infer<typeof RegisterSchema>>({
+		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
 		startTransition(() => {
-			login(values).then((data) => {
+			register(values).then((data) => {
 				setLoginResponse(data);
 			});
 		});
@@ -46,6 +46,25 @@ export function RegisterForm() {
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
 				<div className="space-y-6">
+					<FormField
+						control={form.control}
+						name="userName"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>User name</FormLabel>
+								<FormControl>
+									<Input
+										{...field}
+										disabled={isPending}
+										placeholder="John"
+										type="text"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
 					<FormField
 						control={form.control}
 						name="email"
@@ -91,9 +110,11 @@ export function RegisterForm() {
 					<FormSuccess message={loginResponse?.message} />
 				)}
 
-				<Button type="submit" className="w-full" disabled={isPending}>
-					Login
-				</Button>
+				<div className="flex justify-between">
+					<Button type="submit" className="w-full" disabled={isPending}>
+						Create an account
+					</Button>
+				</div>
 			</form>
 		</Form>
 	);

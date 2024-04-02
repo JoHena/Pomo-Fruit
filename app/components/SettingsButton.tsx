@@ -17,7 +17,7 @@ export function SettingsButton() {
 				<Button variant="ghost">Settings</Button>
 			</DialogTrigger>
 
-			<DialogContent className="text-black sm:max-w-[425px]">
+			<DialogContent className="text-black sm:max-w-[350px]">
 				<DialogHeader>
 					<DialogTitle>Settings</DialogTitle>
 					<DialogDescription>
