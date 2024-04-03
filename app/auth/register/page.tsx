@@ -1,4 +1,4 @@
-import { RegisterCard } from "../components/Forms/Register/RegisterCard";
+import { RegisterCard } from "../../components/Forms/Register/RegisterCard";
 
 export default function Home() {
 	return (
