@@ -9,22 +9,12 @@ export function Navbar() {
 				<span className="material-symbols-outlined mb-0.5">alarm_on</span>
 				<h1>Tempo Orbit</h1>
 			</div>
-			<ul className="flex items-center gap-8 xl:gap-4">
-				<li className="hidden xl:block">
+			<ul className="flex items-center gap-4">
+				<li>
 					<SettingsButton />
 				</li>
-				<li className="xl:hidden">
-					<span className="material-symbols-outlined rounded-lg bg-PomoActive bg-opacity-40 p-0.5">
-						settings
-					</span>
-				</li>
-				<li className="hidden xl:block">
+				<li>
 					<LoginButton />
-				</li>
-				<li className="xl:hidden">
-					<span className="material-symbols-outlined rounded-lg bg-PomoActive bg-opacity-40 p-0.5">
-						account_circle
-					</span>
 				</li>
 			</ul>
 		</nav>

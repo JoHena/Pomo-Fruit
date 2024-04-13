@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 import {
 	Dialog,
 	DialogContent,
@@ -9,13 +10,25 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { LoginForm } from "./LoginForm";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import Link from "next/link";
 
 export function LoginButton() {
+	const onClick = (provider: "google" | "github") => {
+		signIn(provider, {
+			callbackUrl: DEFAULT_LOGIN_REDIRECT,
+		});
+	};
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="ghost">Login</Button>
+				<Button variant="ghost">
+					<div className="hidden xl:block">Login</div>
+					<span className="material-symbols-outlined rounded-lg p-0.5 xl:hidden">
+						account_circle
+					</span>
+				</Button>
 			</DialogTrigger>
 
 			<DialogContent className="px-10 text-black sm:max-w-[350px]">
@@ -32,6 +45,7 @@ export function LoginButton() {
 						<Button
 							className="w-1/2 rounded-lg border-2 bg-white p-4 shadow-md transition-all duration-100 hover:border-PomoInActive/20 hover:bg-white"
 							type="button"
+							onClick={() => onClick("github")}
 						>
 							<FaGithub size={22} className="fill-black" />
 						</Button>
@@ -39,6 +53,7 @@ export function LoginButton() {
 						<Button
 							className="w-1/2 rounded-lg border-2 bg-white p-4 shadow-md transition-all duration-100 hover:border-PomoInActive/20 hover:bg-white"
 							type="button"
+							onClick={() => onClick("google")}
 						>
 							<FcGoogle size={"22"} />
 						</Button>

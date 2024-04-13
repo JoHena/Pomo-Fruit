@@ -14,7 +14,12 @@ export function SettingsButton() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="ghost">Settings</Button>
+				<Button variant="ghost">
+					<div className="hidden xl:block">Settings</div>
+					<span className="material-symbols-outlined rounded-lg p-0.5 xl:hidden">
+						settings
+					</span>
+				</Button>
 			</DialogTrigger>
 
 			<DialogContent className="text-black sm:max-w-[350px]">
