@@ -1,4 +1,4 @@
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/auth/verification"];
 
 /**
  * Array of routes used for authentication.
