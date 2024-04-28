@@ -2,11 +2,10 @@
 
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
-import { getVerificationTokenByEmail } from "@/data/verificationToken";
-import { error } from "console";
+import { getVerificationTokenByToken } from "@/data/verificationToken";
 
-export const VerifyEmail = async (email: string, token: string) => {
-	const existingToken = await getVerificationTokenByEmail(email);
+export const VerifyEmail = async (token: string) => {
+	const existingToken = await getVerificationTokenByToken(token);
 
 	if (!existingToken) {
 		return { error: "Token does not exist." };
@@ -33,4 +32,12 @@ export const VerifyEmail = async (email: string, token: string) => {
 			email: existingToken.email,
 		},
 	});
+
+	await db.verificationToken.delete({
+		where: {
+			id: existingToken.id,
+		},
+	});
+
+	return { sucess: "Email verified successfully!" };
 };
