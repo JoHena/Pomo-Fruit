@@ -6,7 +6,7 @@ export const publicRoutes = ["/", "/auth/verification"];
  * @type {string[]}
  */
 
-export const authRoutes = ["/auth/register", "/auth/error"];
+export const authRoutes = ["/auth/register", "/auth/error", "/auth/reset"];
 
 /**
  * Prefix for API authentication routes.

@@ -1,6 +1,6 @@
 "use server";
 
-import { LoginSchema } from "@/app/schemas";
+import { LoginSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";

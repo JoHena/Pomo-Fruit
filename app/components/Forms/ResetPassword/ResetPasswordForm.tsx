@@ -1,10 +1,10 @@
 "use client";
-import { RegisterSchema } from "../../../../schemas";
+import { ResetSchema } from "@/schemas";
+import { resetPassword } from "@/actions/reset";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { register } from "@/actions/register";
 import { useState, useTransition } from "react";
 import {
 	Form,
@@ -18,7 +18,7 @@ import z from "zod";
 import FormError from "../FormError";
 import FormSuccess from "../FormSuccess";
 
-export function RegisterForm() {
+export function ResetForm() {
 	const [response, setResponse] = useState<{
 		error: boolean;
 		message: string;
@@ -26,19 +26,17 @@ export function RegisterForm() {
 
 	const [isPending, startTransition] = useTransition();
 
-	const form = useForm<z.infer<typeof RegisterSchema>>({
-		resolver: zodResolver(RegisterSchema),
+	const form = useForm<z.infer<typeof ResetSchema>>({
+		resolver: zodResolver(ResetSchema),
 		defaultValues: {
 			email: "",
-			password: "",
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-		startTransition(() => {
-			register(values).then((data) => {
-				setResponse(data);
-			});
+	const onSubmit = (values: z.infer<typeof ResetSchema>) => {
+		console.log(values);
+		resetPassword(values).then((data) => {
+			setResponse(data);
 		});
 	};
 
@@ -46,25 +44,6 @@ export function RegisterForm() {
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
 				<div className="space-y-6">
-					<FormField
-						control={form.control}
-						name="userName"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>User name</FormLabel>
-								<FormControl>
-									<Input
-										{...field}
-										disabled={isPending}
-										placeholder="John"
-										type="text"
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
 					<FormField
 						control={form.control}
 						name="email"
@@ -83,25 +62,6 @@ export function RegisterForm() {
 							</FormItem>
 						)}
 					/>
-
-					<FormField
-						control={form.control}
-						name="password"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Password</FormLabel>
-								<FormControl>
-									<Input
-										{...field}
-										placeholder="******"
-										type="password"
-										disabled={isPending}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
 				</div>
 
 				{response?.error ? (
@@ -110,11 +70,9 @@ export function RegisterForm() {
 					<FormSuccess message={response?.message} />
 				)}
 
-				<div className="flex justify-between">
-					<Button type="submit" className="w-full" disabled={isPending}>
-						Create an account
-					</Button>
-				</div>
+				<Button type="submit" className="w-full" disabled={isPending}>
+					Reset
+				</Button>
 			</form>
 		</Form>
 	);

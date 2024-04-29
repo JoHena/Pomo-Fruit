@@ -1,5 +1,5 @@
 "use client";
-import { LoginSchema } from "../../../schemas";
+import { LoginSchema } from "../../../../schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,7 @@ import {
 import z from "zod";
 import FormError from "../FormError";
 import FormSuccess from "../FormSuccess";
+import Link from "next/link";
 
 export function LoginForm() {
 	const [loginResponse, setLoginResponse] = useState<{
@@ -79,12 +80,17 @@ export function LoginForm() {
 										disabled={isPending}
 									/>
 								</FormControl>
+								<Link
+									className="border-b p-1 text-xs text-gray-500 hover:border-b-black"
+									href={"auth/reset"}
+								>
+									Forgot your password?
+								</Link>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 				</div>
-
 				{loginResponse?.error ? (
 					<FormError message={loginResponse?.message} />
 				) : (
