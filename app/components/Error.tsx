@@ -6,7 +6,6 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { useSearchParams } from "next/navigation";
-import FormError from "./Forms/FormError";
 import { useEffect, useState } from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 

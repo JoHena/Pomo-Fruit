@@ -41,6 +41,18 @@ model User {
   image         String?
   password      String?
   accounts      Account[]
+  settings      Settings?
+}
+
+model Settings {
+  id      String  @id @default(cuid())
+  workTime Int?
+  restTime Int?
+  workColor String?
+  restColor String?
+
+  userId  String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

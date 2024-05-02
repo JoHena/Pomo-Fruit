@@ -1,8 +1,13 @@
 import React from "react";
 import { LoginButton } from "./Forms/Login/LoginDialog";
-import { SettingsButton } from "./SettingsButton";
+import { SettingsButton } from "./Forms/PomoSettings/SettingsButton";
+import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
+import { AvatarDropDown } from "./AvatarDropDown";
 
 export function Navbar() {
+	const session = useSession();
+
 	return (
 		<nav className="flex w-[90vw] items-center justify-between py-5 font-bold tracking-wide xl:w-1/3">
 			<div className="flex items-center gap-3">
@@ -13,9 +18,17 @@ export function Navbar() {
 				<li>
 					<SettingsButton />
 				</li>
-				<li>
-					<LoginButton />
-				</li>
+				{session ? (
+					<li>
+						<AvatarDropDown />
+					</li>
+				) : (
+					<>
+						<li>
+							<LoginButton />
+						</li>
+					</>
+				)}
 			</ul>
 		</nav>
 	);
