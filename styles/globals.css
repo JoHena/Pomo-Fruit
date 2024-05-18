@@ -76,6 +76,23 @@ body {
 	color: #f9f5e3;
 }
 
+/* ScrollBar */
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: black;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsl(0, 0%, 100%);
+	border: 0.025em solid black;
+	border-radius: 10px;
+}
+
 @layer base {
 	* {
 		@apply border-border;

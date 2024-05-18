@@ -44,7 +44,7 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				setPercentage(calculatePercentage(minutes + seconds * 0.01, timerMode));
 				clockTicking();
 			}
-		}, 10);
+		}, 1000);
 
 		return () => {
 			clearInterval(clock);

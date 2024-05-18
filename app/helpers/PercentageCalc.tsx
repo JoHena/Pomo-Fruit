@@ -33,7 +33,7 @@ export function getStyle({ isTicking, timerMode }: ITimer) {
 	if (timerMode === timerState.Rest) {
 		timerStyle = {
 			textColor: "white",
-			pathColor: "rgba(136, 209, 138, 100)",
+			pathColor: "#00",
 			trailColor: "#13293D",
 		};
 	}

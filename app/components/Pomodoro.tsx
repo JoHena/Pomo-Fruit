@@ -13,7 +13,7 @@ export function Pomodoro({}) {
 	return (
 		<div
 			className={twMerge(
-				"flex min-h-screen flex-col items-center gap-[5vh] text-white transition-colors duration-500",
+				"flex min-h-screen snap-start flex-col items-center gap-[5vh] text-white transition-colors duration-500",
 				!timer.isTicking || timer.timerMode === timerState.Rest
 					? "bg-PomoInActive"
 					: "bg-PomoActive text-PomoInActive",
