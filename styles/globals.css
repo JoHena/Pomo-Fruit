@@ -76,6 +76,18 @@ body {
 	color: #f9f5e3;
 }
 
+/* BG */
+
+.description {
+	background: linear-gradient(white, transparent),
+		url(https://grainy-gradients.vercel.app/noise.svg);
+}
+
+footer {
+	background: linear-gradient(transparent, transparent),
+		url(https://grainy-gradients.vercel.app/noise.svg);
+}
+
 /* ScrollBar */
 
 ::-webkit-scrollbar {

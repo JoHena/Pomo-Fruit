@@ -15,15 +15,22 @@ export function TaskManager({ timerMode, isTicking }: ITimer) {
 		<div className="flex w-[90vw] flex-col items-center gap-8 xl:w-[90%] xl:gap-6">
 			<div
 				className={twMerge(
-					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white",
-					isTicking && timerMode === timerState.Work && "text-PomoInActive",
-					tasks.length <= 0 && "hidden",
+					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white shadow-md",
+					isTicking &&
+						timerMode === timerState.Work &&
+						"bg-opacity-100 text-PomoInActive shadow-md shadow-PomoInActive",
 				)}
 			>
-				<span>
-					{totalFinished}/{totalTime} Pomodros
-				</span>
-				|<span>Time remaining: {totalTime * 25} min</span>
+				{tasks.length <= 0 ? (
+					<p className="tracking-wide">Lets get to work!</p>
+				) : (
+					<>
+						<span>
+							{totalFinished}/{totalTime} Pomodros
+						</span>
+						|<span>Time remaining: {totalTime * 25} min</span>
+					</>
+				)}
 			</div>
 			<h2
 				className={twMerge(

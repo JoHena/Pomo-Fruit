@@ -1,13 +1,15 @@
 import { Pomodoro } from "./components/Pomodoro";
+import Image from "next/image";
 
 export default function Home() {
 	return (
 		<main>
 			<Pomodoro />
 
-			<section className="flex snap-start flex-col items-center bg-white py-10 text-base font-light text-black xl:text-lg">
+			<section className="description flex snap-start flex-col items-center bg-white py-10 text-base font-light text-black xl:text-lg">
 				<div className="flex w-[90vw] flex-col gap-10 xl:w-1/3">
-					<h2 className="text-4xl font-bold">
+					<h2 className="flex gap-5 text-4xl font-bold">
+						<Image src={"/TimeTomato.png"} alt="awdwa" width={80} height={32} />
 						An online Pomodoro Timer to boost your productivity.
 					</h2>
 

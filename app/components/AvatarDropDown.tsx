@@ -14,7 +14,7 @@ export function AvatarDropDown({
 	name,
 	image,
 }: {
-	name: string;
+	name?: string | null;
 	image?: string | null;
 }) {
 	useEffect(() => {
@@ -26,7 +26,9 @@ export function AvatarDropDown({
 			<DropdownMenuTrigger asChild>
 				<Avatar className="h-9 w-9 border-2 border-PomoInActive text-PomoInActive">
 					{image !== null && <AvatarImage src={image} />}
-					<AvatarFallback>{name[0]}</AvatarFallback>
+					{name !== null && name !== undefined && (
+						<AvatarFallback>{name[0]}</AvatarFallback>
+					)}
 				</Avatar>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="mt-3 min-w-28 p-0" align="end">

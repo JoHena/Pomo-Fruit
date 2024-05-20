@@ -24,7 +24,7 @@ export default async function RootLayout({
 		<SessionProvider session={session}>
 			<html lang="en" className="snap-none snap-proximity md:snap-y">
 				<body
-					className={`font-xl bg-PomoInActive font-semibold ${inter.className} no-scrollbar overflow-y-scroll`}
+					className={`font-xl bg-white font-semibold ${inter.className} no-scrollbar overflow-y-scroll`}
 				>
 					<ReduxProvider>{children}</ReduxProvider>
 				</body>
