@@ -13,7 +13,7 @@ export function Pomodoro({}) {
 	return (
 		<div
 			className={twMerge(
-				"flex min-h-screen snap-start flex-col items-center gap-[5vh] text-white transition-colors duration-500",
+				"pomo-section flex min-h-screen snap-start flex-col items-center gap-[5vh] text-white",
 				!timer.isTicking || timer.timerMode === timerState.Rest
 					? "bg-PomoInActive"
 					: "bg-PomoActive text-PomoInActive",
@@ -22,7 +22,7 @@ export function Pomodoro({}) {
 			<Navbar />
 			<ErrorPopup />
 
-			<section className="flex flex-col items-center gap-12 py-12 tracking-wide xl:w-1/3">
+			<section className="flex flex-col items-center gap-12 py-6 tracking-wide xl:w-1/3">
 				<Timer {...timer} />
 				<TaskManager {...timer} />
 			</section>

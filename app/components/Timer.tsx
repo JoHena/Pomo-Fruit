@@ -8,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import { calculatePercentage, getStyle } from "../helpers/PercentageCalc";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Button } from "@/components/ui/button";
+import { TaskCounter } from "./TaskCounter";
 
 export function Timer({ isTicking, timerMode }: ITimer) {
 	const [minutes, setMinutes] = useState(25);
@@ -52,8 +53,8 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 	}, [seconds, minutes, isTicking]);
 
 	return (
-		<div className="flex h-[55vh] flex-col items-center gap-8 xl:h-auto xl:w-[55%]">
-			<div className="w-full text-8xl font-extrabold">
+		<div className="flex h-[70vh] w-full flex-col items-center gap-8 lg:h-auto">
+			<div className="w-full text-8xl font-extrabold md:w-[60%]">
 				<CircularProgressbar
 					styles={buildStyles(getStyle({ isTicking, timerMode }))}
 					value={percentage}
@@ -61,16 +62,20 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				/>
 			</div>
 
-			<Button
-				className={twMerge(isTicking && "bg-[#C20114] text-white")}
-				variant={"pomodoro"}
-				size={"pomodoro"}
-				onClick={() => {
-					dispatch(setTicking());
-				}}
-			>
-				{isTicking ? "Stop" : "Start"}
-			</Button>
+			<div className="flex w-[90%] flex-col items-center gap-16">
+				<Button
+					className={twMerge(isTicking && "bg-[#C20114] text-white")}
+					variant={"pomodoro"}
+					size={"pomodoro"}
+					onClick={() => {
+						dispatch(setTicking());
+					}}
+				>
+					{isTicking ? "Stop" : "Start"}
+				</Button>
+
+				<TaskCounter isTicking={isTicking} timerMode={timerMode} />
+			</div>
 		</div>
 	);
 }

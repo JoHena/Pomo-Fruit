@@ -24,8 +24,8 @@ export function AvatarDropDown({
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Avatar className="h-9 w-9 border-2 border-PomoInActive text-PomoInActive">
-					{image !== null && <AvatarImage src={image} />}
+				<Avatar className="h-11 w-11 border-2 border-PomoInActive text-PomoInActive">
+					{image !== null && <AvatarImage src={`${image}`} />}
 					{name !== null && name !== undefined && (
 						<AvatarFallback>{name[0]}</AvatarFallback>
 					)}

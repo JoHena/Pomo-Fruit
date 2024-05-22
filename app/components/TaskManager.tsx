@@ -7,31 +7,10 @@ import { useAppSelector } from "../redux/store";
 
 export function TaskManager({ timerMode, isTicking }: ITimer) {
 	const [active, setActive] = useState(false);
-	const { tasks, totalTime, totalFinished } = useAppSelector(
-		(state) => state.tasksReducer.value,
-	);
+	const { tasks } = useAppSelector((state) => state.tasksReducer.value);
 
 	return (
-		<div className="flex w-[90vw] flex-col items-center gap-8 xl:w-[90%] xl:gap-6">
-			<div
-				className={twMerge(
-					"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white shadow-md",
-					isTicking &&
-						timerMode === timerState.Work &&
-						"bg-opacity-100 text-PomoInActive shadow-md shadow-PomoInActive",
-				)}
-			>
-				{tasks.length <= 0 ? (
-					<p className="tracking-wide">Lets get to work!</p>
-				) : (
-					<>
-						<span>
-							{totalFinished}/{totalTime} Pomodros
-						</span>
-						|<span>Time remaining: {totalTime * 25} min</span>
-					</>
-				)}
-			</div>
+		<div className="flex w-[90vw] flex-col items-center gap-8 pb-16 xl:w-[90%] xl:gap-6">
 			<h2
 				className={twMerge(
 					"w-full border-b-2 p-3 text-center font-bold",

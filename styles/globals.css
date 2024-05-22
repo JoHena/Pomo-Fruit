@@ -78,6 +78,18 @@ body {
 
 /* BG */
 
+.pomo-section {
+	transition-property: background-color;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 500ms;
+}
+
+.nav-button {
+	transition-property: background-color;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 300ms;
+}
+
 .description {
 	background: linear-gradient(white, transparent),
 		url(https://grainy-gradients.vercel.app/noise.svg);
