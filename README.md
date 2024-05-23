@@ -1,16 +1,15 @@
-## A Pomodoro APP to keep myself productive and Organized
 
-#Features
-  - Variable timers for Work and Rest
-  - Task list
-  - Task completion
-  - Customizable timer.
+## What is Pomo Fruit?
+Boost your productivity with the Pomo fruit web app, designed to help you manage your time effectively and track your progress. Here’s what makes our app stand out:
 
-#Pending Features
-  - Statistics
+-  **Responsive Design:** Enjoy a clean and intuitive user interface that looks great and works seamlessly on any device, whether you're on your desktop, tablet, or smartphone.
+-  **Draggable Task List:** Organize and prioritize your tasks effortlessly with our draggable task list feature. Adjust your priorities on the go to stay on top of your workload.
+-  **User Authentication:** Securely log in and register using OAuth and credentials. Your data is protected and easily accessible anytime you need it.
+-  **User Stats Tracking:** Monitor your productivity with detailed stats tracking. See your progress over time and stay motivated by visualizing your achievements.
+-  **Customizable Timer and Task Settings:** Tailor the app to your workflow with customizable timer intervals and task settings. Make it work for you by setting the timers and tasks to fit your unique productivity style.
 
-## What is Yon's Jukebox?
-This is a little Jukebox web app utilizing vue.js and the Spotify Api to give random album recommendations from my collection. 
+Experience a new level of efficiency and stay organized with our Pomodoro Timer app, designed to help you achieve more with less stress.
+
 
 Desktop view             |  Mobile view
 :-------------------------:|:-------------------------:
