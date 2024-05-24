@@ -7,6 +7,7 @@ Boost your productivity with the Pomo fruit web app, designed to help you manage
 -  **User Authentication:** Securely log in and register using OAuth and credentials. Your data is protected and easily accessible anytime you need it.
 -  **User Stats Tracking:** Monitor your productivity with detailed stats tracking. See your progress over time and stay motivated by visualizing your achievements.
 -  **Customizable Timer and Task Settings:** Tailor the app to your workflow with customizable timer intervals and task settings. Make it work for you by setting the timers and tasks to fit your unique productivity style.
+-  **Earnable rewards a fruit points:** Spend the fruits of your labor on some customization!
 
 Experience a new level of efficiency and stay organized with our Pomodoro Timer app, designed to help you achieve more with less stress.
 
