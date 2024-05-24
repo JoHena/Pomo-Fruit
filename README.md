@@ -26,3 +26,5 @@ Desktop view             |  Mobile view
   - [x] User stats tracking and display.
   - [x] Customizable timer and task settings.
   - [ ] Customizable background Colors for each mode.
+  - [ ] Earnable fruit points.
+  - [ ] Store items for customization.
