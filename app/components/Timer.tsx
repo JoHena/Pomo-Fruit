@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import { ITimer, timerState } from "../typing";
 import { useAppDispatch } from "../redux/store";
 import { setMode, setTicking } from "../redux/features/timerSlice";
+import { finishTask } from "../redux/features/taskSlice";
 import { twMerge } from "tailwind-merge";
 import { calculatePercentage, getStyle } from "../helpers/PercentageCalc";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Button } from "@/components/ui/button";
-import { TaskCounter } from "./TaskCounter";
+import { TaskCounter } from "./Tasks/TaskCounter";
 
 export function Timer({ isTicking, timerMode }: ITimer) {
 	const [minutes, setMinutes] = useState(25);
@@ -23,6 +24,7 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				setMinutes(5);
 				dispatch(setMode(1));
 				setPercentage(0);
+				dispatch(finishTask());
 			}
 
 			if (timerMode === timerState.Rest) {
@@ -30,7 +32,6 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				dispatch(setMode(0));
 				setPercentage(0);
 			}
-			// setFinishedCount((prev) => prev + 1);
 		} else if (seconds === 0) {
 			setMinutes((minute) => minute - 1);
 			setSeconds(59);
@@ -45,7 +46,7 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				setPercentage(calculatePercentage(minutes + seconds * 0.01, timerMode));
 				clockTicking();
 			}
-		}, 1000);
+		}, 10);
 
 		return () => {
 			clearInterval(clock);

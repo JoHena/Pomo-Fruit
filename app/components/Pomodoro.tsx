@@ -1,11 +1,11 @@
 "use client";
 import { Timer } from "@/app/components/Timer";
-import { TaskManager } from "./TaskManager";
 import { twMerge } from "tailwind-merge";
 import { Navbar } from "./Navbar";
 import { timerState } from "../typing";
 import { useAppSelector } from "../redux/store";
 import { ErrorPopup } from "./Error";
+import { TaskManager } from "./Tasks/TaskManager";
 
 export function Pomodoro({}) {
 	const { ...timer } = useAppSelector((state) => state.timerReducer.value);

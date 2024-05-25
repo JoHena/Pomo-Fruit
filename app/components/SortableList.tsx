@@ -12,10 +12,10 @@ import {
 	useSensors,
 } from "@dnd-kit/core";
 import { Task } from "../typing";
-import { TaskCard } from "./TaskCard";
-import { TaskForm } from "./TaskForm";
+import { TaskCard } from "./Tasks/TaskCard";
 import { useAppDispatch } from "../redux/store";
 import { changePosition } from "../redux/features/taskSlice";
+import { TaskForm } from "./Tasks/TaskForm";
 
 interface ISortableList {
 	tasks: Task[];

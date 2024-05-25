@@ -1,9 +1,9 @@
-import { PomoCounter } from "./PomoCounter";
 import React, { useState } from "react";
-import { Task } from "../typing";
-import { addTask, editTask, changeMode } from "../redux/features/taskSlice";
+import { AppDispatch } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
+import { addTask, changeMode, editTask } from "@/app/redux/features/taskSlice";
+import { PomoCounter } from "../PomoCounter";
+import { Task } from "@/app/typing";
 
 interface ITaskForm {
 	task?: Task;
@@ -33,7 +33,7 @@ export function TaskForm({ setActive, task }: ITaskForm) {
 				autoFocus
 				className="w-full appearance-none bg-transparent text-xl outline-none"
 				placeholder="What are you working on?"
-				value={taskName}
+				defaultValue={taskName}
 				onChange={(e) => {
 					setTaskName(e.target.value);
 				}}

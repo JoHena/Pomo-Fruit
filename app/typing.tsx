@@ -11,7 +11,7 @@ export interface ITimer {
 export interface Task {
 	id: number;
 	taskName: string;
-	pomosFinished?: number;
+	pomosFinished: number;
 	pomoTime: number;
 	completed: boolean;
 	editMode: boolean;
