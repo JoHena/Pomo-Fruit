@@ -22,7 +22,6 @@ export const tasks = createSlice({
 			state,
 			action: PayloadAction<{ taskName: string; pomoTime: number }>,
 		) => {
-			console.log(state.value.tasks.length + 1);
 			state.value.tasks.push({
 				id: state.value.tasks.length + 1,
 				pomosFinished: 0,

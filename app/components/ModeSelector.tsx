@@ -5,11 +5,17 @@ import { timerState } from "../typing";
 import { setMode } from "../redux/features/timerSlice";
 import { useAppDispatch } from "../redux/store";
 
-export function ModeSelector({ timerMode }: { timerMode: timerState }) {
+export function ModeSelector({
+	timerMode,
+	isTicking,
+}: {
+	timerMode: timerState;
+	isTicking: boolean;
+}) {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className="flex gap-5 p-4">
+		<div className="flex gap-5 p-4 text-white">
 			<Button
 				variant="main"
 				onClick={() => {
@@ -17,6 +23,7 @@ export function ModeSelector({ timerMode }: { timerMode: timerState }) {
 				}}
 				className={twMerge(
 					"w-1/3",
+					isTicking === true && "bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.Work &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}
@@ -30,6 +37,7 @@ export function ModeSelector({ timerMode }: { timerMode: timerState }) {
 				}}
 				className={twMerge(
 					"w-1/3",
+					isTicking === true && "bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.Rest &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}
@@ -43,6 +51,7 @@ export function ModeSelector({ timerMode }: { timerMode: timerState }) {
 				}}
 				className={twMerge(
 					"w-1/3",
+					isTicking === true && "bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.LongRest &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}

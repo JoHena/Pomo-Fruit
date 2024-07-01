@@ -24,10 +24,8 @@ export function calculatePercentage(time: number, timer: timerState) {
 export function getStyle({ isTicking, timerMode }: ITimer) {
 	let timerStyle = {
 		textColor: isTicking ? "#13293D" : "white",
-		pathColor: isTicking
-			? "rgba(217, 219, 241, 1)"
-			: "rgba(136, 209, 138, 100)",
-		trailColor: "#13293D",
+		pathColor: isTicking ? "white" : "rgba(136, 209, 138, 100)",
+		trailColor: "transparent",
 	};
 
 	if (timerMode === timerState.Rest) {

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 	SortableContext,
 	verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import {
 	DndContext,
+	DragOverlay,
 	PointerSensor,
 	TouchSensor,
 	closestCorners,
@@ -16,6 +17,7 @@ import { TaskCard } from "./Tasks/TaskCard";
 import { useAppDispatch } from "../redux/store";
 import { changePosition } from "../redux/features/taskSlice";
 import { TaskForm } from "./Tasks/TaskForm";
+import { TaskGhost } from "./Tasks/TaskGhost";
 
 interface ISortableList {
 	tasks: Task[];
@@ -23,12 +25,23 @@ interface ISortableList {
 
 export function SortableList({ tasks }: ISortableList) {
 	const dispatch = useAppDispatch();
+	const [activeId, setActiveId] = useState<number | null>(null);
+
+	function handleDragStart(event: any) {
+		setActiveId(event.active.id);
+	}
 
 	const handleDragEnd = (event: any) => {
 		const { active, over } = event;
 		if (active.id === over.id) return;
 		dispatch(changePosition({ oldTaskID: active.id, newTaskID: over.id }));
+		setActiveId(null);
 	};
+
+	useEffect(() => {
+		console.log(activeId ? activeId - 1 : "...");
+		console.log(activeId ? tasks[activeId - 1] : "nada");
+	}, [activeId]);
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -44,6 +57,7 @@ export function SortableList({ tasks }: ISortableList) {
 			<DndContext
 				collisionDetection={closestCorners}
 				onDragEnd={handleDragEnd}
+				onDragStart={handleDragStart}
 				sensors={sensors}
 			>
 				<SortableContext items={tasks} strategy={verticalListSortingStrategy}>
@@ -55,6 +69,9 @@ export function SortableList({ tasks }: ISortableList) {
 						/>
 					))}
 				</SortableContext>
+				<DragOverlay>
+					<TaskGhost />
+				</DragOverlay>
 			</DndContext>
 		</ul>
 	);

@@ -41,16 +41,16 @@ export function Timer({
 			if (isTicking) {
 				clockTicking();
 			}
-		}, 1);
+		}, 1000);
 
 		return () => {
 			clearInterval(clock);
 		};
-	}, [seconds, minutes, isTicking]);
+	}, [seconds, minutes, isTicking, clockTicking]);
 
 	return (
 		<div className="flex w-full flex-col items-center gap-8 lg:h-auto">
-			<ModeSelector timerMode={timerMode} />
+			<ModeSelector timerMode={timerMode} isTicking={isTicking} />
 
 			<div className="w-full text-8xl font-extrabold md:w-[60%]">
 				<CircularProgressbar
@@ -62,7 +62,7 @@ export function Timer({
 
 			<div className="flex w-[90%] flex-col items-center gap-8">
 				<Button
-					className={twMerge(isTicking && "bg-[#C20114] text-white")}
+					className={twMerge(isTicking && "bg-PomoInActive text-white")}
 					variant={"pomodoro"}
 					size={"pomodoro"}
 					onClick={() => {

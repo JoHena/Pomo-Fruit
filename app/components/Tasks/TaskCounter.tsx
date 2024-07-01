@@ -11,7 +11,7 @@ export function TaskCounter({ timerMode, isTicking }: ITimer) {
 	return (
 		<div
 			className={twMerge(
-				"flex w-full justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white shadow-md",
+				"flex w-[80%] justify-evenly rounded-md bg-white bg-opacity-10 p-3 text-white shadow-md",
 				isTicking &&
 					timerMode === timerState.Work &&
 					"bg-opacity-100 text-PomoInActive shadow-md shadow-PomoInActive",

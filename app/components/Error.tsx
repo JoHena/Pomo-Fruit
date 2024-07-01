@@ -19,7 +19,7 @@ export function ErrorPopup() {
 			setOpen(true);
 			setMessage("Email already in use with a different provider!");
 		}
-	}, []);
+	}, [searchParams]);
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
