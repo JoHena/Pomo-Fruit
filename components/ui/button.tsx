@@ -12,12 +12,6 @@ const buttonVariants = cva(
 				default: "bg-primary text-primary-foreground hover:bg-primary/90",
 				pomodoro:
 					"bg-[#88D18A] text-[#13293D] font-black tracking-wider active:text-black active:bg-white/90 transition-colors duration-300 shadow-md shadow-zinc-800",
-				destructive:
-					"bg-destructive text-destructive-foreground hover:bg-destructive/90",
-				outline:
-					"border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-				secondary:
-					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
 				ghost: "hover:bg-accent hover:text-accent-foreground font-extrabold",
 				main: "font-extrabold bg-white bg-opacity-10 hover:bg-white hover:text-PomoInActive shadow-md",
 				link: "text-primary underline-offset-4 hover:underline",
@@ -26,7 +20,7 @@ const buttonVariants = cva(
 				default: "h-10 px-4 py-2",
 				sm: "h-9 rounded-md px-3",
 				lg: "h-11 rounded-md px-8",
-				pomodoro: "h-10 px-4 py-2 w-1/2 xl:w-1/3",
+				pomodoro: "h-10 p-6 w-1/2 xl:w-1/3",
 				icon: "h-10 w-10",
 			},
 		},

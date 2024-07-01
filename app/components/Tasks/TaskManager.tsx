@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { ITimer, timerState } from "../typing";
 import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
-import { SortableList } from "./SortableList";
-import { useAppSelector } from "../redux/store";
+import { useAppSelector } from "@/app/redux/store";
+import { ITimer, timerState } from "@/app/typing";
+import { SortableList } from "../SortableList";
 
 export function TaskManager({ timerMode, isTicking }: ITimer) {
 	const [active, setActive] = useState(false);

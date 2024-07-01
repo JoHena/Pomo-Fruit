@@ -1,51 +1,47 @@
 "use client";
 import "react-circular-progressbar/dist/styles.css";
-import React, { useEffect, useState } from "react";
-import { ITimer, timerState } from "../typing";
+import React, { useEffect } from "react";
+import { IPomodoro, timerState } from "../typing";
 import { useAppDispatch } from "../redux/store";
-import { setMode, setTicking } from "../redux/features/timerSlice";
+import { setMode, setTicking, updateTimer } from "../redux/features/timerSlice";
+import { finishTask } from "../redux/features/taskSlice";
 import { twMerge } from "tailwind-merge";
-import { calculatePercentage, getStyle } from "../helpers/PercentageCalc";
+import { getStyle } from "../helpers/PercentageCalc";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Button } from "@/components/ui/button";
-import { TaskCounter } from "./TaskCounter";
+import { TaskCounter } from "./Tasks/TaskCounter";
+import { ModeSelector } from "./ModeSelector";
 
-export function Timer({ isTicking, timerMode }: ITimer) {
-	const [minutes, setMinutes] = useState(25);
-	const [seconds, setSeconds] = useState(0);
-	const [percentage, setPercentage] = useState(0);
-
+export function Timer({
+	isTicking,
+	timerMode,
+	minutes,
+	seconds,
+	percentage,
+}: IPomodoro) {
 	const dispatch = useAppDispatch();
 
 	const clockTicking = () => {
 		if (minutes === 0 && seconds === 0) {
 			if (timerMode === timerState.Work) {
-				setMinutes(5);
 				dispatch(setMode(1));
-				setPercentage(0);
+				dispatch(finishTask());
 			}
 
 			if (timerMode === timerState.Rest) {
-				setMinutes(25);
 				dispatch(setMode(0));
-				setPercentage(0);
 			}
-			// setFinishedCount((prev) => prev + 1);
-		} else if (seconds === 0) {
-			setMinutes((minute) => minute - 1);
-			setSeconds(59);
 		} else {
-			setSeconds((second) => second - 1);
+			dispatch(updateTimer());
 		}
 	};
 
 	useEffect(() => {
 		const clock = setInterval(() => {
 			if (isTicking) {
-				setPercentage(calculatePercentage(minutes + seconds * 0.01, timerMode));
 				clockTicking();
 			}
-		}, 1000);
+		}, 1);
 
 		return () => {
 			clearInterval(clock);
@@ -53,7 +49,9 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 	}, [seconds, minutes, isTicking]);
 
 	return (
-		<div className="flex h-[70vh] w-full flex-col items-center gap-8 lg:h-auto">
+		<div className="flex w-full flex-col items-center gap-8 lg:h-auto">
+			<ModeSelector timerMode={timerMode} />
+
 			<div className="w-full text-8xl font-extrabold md:w-[60%]">
 				<CircularProgressbar
 					styles={buildStyles(getStyle({ isTicking, timerMode }))}
@@ -62,7 +60,7 @@ export function Timer({ isTicking, timerMode }: ITimer) {
 				/>
 			</div>
 
-			<div className="flex w-[90%] flex-col items-center gap-16">
+			<div className="flex w-[90%] flex-col items-center gap-8">
 				<Button
 					className={twMerge(isTicking && "bg-[#C20114] text-white")}
 					variant={"pomodoro"}

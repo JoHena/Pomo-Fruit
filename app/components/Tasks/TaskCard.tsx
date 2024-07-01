@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
-import { ITimer, Task, timerState } from "../typing";
+import { Task, timerState } from "../../typing";
 import { twMerge } from "tailwind-merge";
-import { changeMode } from "../redux/features/taskSlice";
+import { changeMode } from "../../redux/features/taskSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch, useAppSelector } from "../redux/store";
+import { AppDispatch, useAppSelector } from "../../redux/store";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -32,6 +32,7 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 				taskForm
 			) : (
 				<li
+					data-no-dnd={"true"}
 					ref={setNodeRef}
 					className={twMerge(
 						"shadow-m flex h-12 touch-none items-center justify-between rounded-md rounded-l-sm border-l-8 bg-white px-4 py-2 text-PomoInActive",
@@ -45,15 +46,31 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 				>
 					<div className="flex w-[90%] items-center justify-between">
 						<div className="flex items-center gap-3">
-							<span className="material-symbols-outlined">check_circle</span>
+							<span
+								className={twMerge(
+									"material-symbols-outlined",
+									task.completed && "text-PomoActive",
+								)}
+							>
+								check_circle
+							</span>
 							<span>{task.taskName}</span>
 						</div>
-						<span>0/{task.pomoTime}</span>
+						<span
+							className={
+								task.pomosFinished === task.pomoTime
+									? "text-PomoActive"
+									: "text-PomoInActive]"
+							}
+						>
+							{task.pomosFinished}/{task.pomoTime}
+						</span>
 					</div>
 
 					<button
+						disabled={task.completed}
 						data-no-dnd="true"
-						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl transition-colors hover:text-blue-500"
+						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl transition-colors hover:text-blue-500 disabled:text-gray-400 disabled:hover:text-gray-400"
 						onClick={() => {
 							dispatch(changeMode({ id: task!.id, mode: true }));
 						}}

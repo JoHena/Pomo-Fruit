@@ -1,7 +1,7 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { ITimer, timerState } from "../typing";
-import { useAppSelector } from "../redux/store";
+import { ITimer, timerState } from "@/app/typing";
+import { useAppSelector } from "@/app/redux/store";
 
 export function TaskCounter({ timerMode, isTicking }: ITimer) {
 	const { tasks, totalTime, totalFinished } = useAppSelector(
@@ -25,7 +25,7 @@ export function TaskCounter({ timerMode, isTicking }: ITimer) {
 						{totalFinished}/{totalTime} Pomodros
 					</span>
 					<div className="hidden lg:block">|</div>
-					<span>Time remaining: {totalTime * 25} min</span>
+					<span>Time remaining: {totalTime * 25 - totalFinished * 25} min</span>
 				</div>
 			)}
 		</div>

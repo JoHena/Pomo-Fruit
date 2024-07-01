@@ -15,6 +15,9 @@ export function PomoCounter({ count, setCount }: ICounter) {
 					type="number"
 					className="w-12 rounded-sm bg-PomoInActive text-center text-xl text-white outline-none"
 					value={count}
+					onChange={() => {
+						count >= 1 && setCount((current) => current + 1);
+					}}
 				></input>
 
 				<AdderButton

@@ -25,6 +25,7 @@ export const tasks = createSlice({
 			console.log(state.value.tasks.length + 1);
 			state.value.tasks.push({
 				id: state.value.tasks.length + 1,
+				pomosFinished: 0,
 				completed: false,
 				editMode: false,
 				...action.payload,
@@ -34,17 +35,24 @@ export const tasks = createSlice({
 		},
 
 		editTask: (state, action: PayloadAction<Task>) => {
+			const { tasks } = state.value;
+
+			const taskIndex = tasks.findIndex(
+				(task) => task.id === action.payload.id,
+			);
+
 			state.value.totalTime =
 				state.value.totalTime -
-				state.value.tasks[action.payload.id - 1].pomoTime +
+				state.value.tasks[taskIndex].pomoTime +
 				action.payload.pomoTime;
-			state.value.tasks[action.payload.id - 1] = action.payload;
+			state.value.tasks[taskIndex] = action.payload;
 		},
 
 		changeMode: (
 			state,
 			action: PayloadAction<{ id: number; mode: boolean }>,
 		) => {
+			console.log(action.payload.id);
 			const newTaskList = state.value.tasks.map((prev: any) => {
 				// Check if the object's id matches the objectId
 				if (prev.id === action.payload.id) {
@@ -73,13 +81,27 @@ export const tasks = createSlice({
 			state.value.tasks = arrayMove(tasks, originalPos, newPos);
 		},
 
-		finishTask: (state, action: PayloadAction<{ id: number }>) => {
-			state.value.tasks[action.payload.id].completed = true;
-			state.value.totalFinished += 1;
-			state.value.totalTime -= state.value.tasks[action.payload.id].pomoTime;
+		finishTask: (state) => {
+			const { tasks } = state.value;
+
+			for (const index in tasks) {
+				if (tasks[index].completed !== true) {
+					state.value.tasks[index].pomosFinished += 1;
+					state.value.totalFinished += 1;
+
+					if (tasks[index].pomosFinished === tasks[index].pomoTime) {
+						state.value.tasks[index].completed = true;
+						state.value.tasks = arrayMove(tasks, 0, -1);
+						break;
+					}
+
+					break;
+				}
+			}
 		},
 	},
 });
 
-export const { addTask, editTask, changeMode, changePosition } = tasks.actions;
+export const { addTask, editTask, changeMode, changePosition, finishTask } =
+	tasks.actions;
 export default tasks.reducer;
