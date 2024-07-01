@@ -23,7 +23,9 @@ export function ModeSelector({
 				}}
 				className={twMerge(
 					"w-1/3",
-					isTicking === true && "bg-PomoInActive bg-opacity-90",
+					isTicking === true &&
+						timerMode === timerState.Work &&
+						"bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.Work &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}
@@ -37,7 +39,9 @@ export function ModeSelector({
 				}}
 				className={twMerge(
 					"w-1/3",
-					isTicking === true && "bg-PomoInActive bg-opacity-90",
+					isTicking === true &&
+						timerMode === timerState.Work &&
+						"bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.Rest &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}
@@ -51,7 +55,9 @@ export function ModeSelector({
 				}}
 				className={twMerge(
 					"w-1/3",
-					isTicking === true && "bg-PomoInActive bg-opacity-90",
+					isTicking === true &&
+						timerMode === timerState.Work &&
+						"bg-PomoInActive bg-opacity-90",
 					timerMode === timerState.LongRest &&
 						"bg-white bg-opacity-100 text-PomoInActive",
 				)}

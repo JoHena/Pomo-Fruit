@@ -14,7 +14,7 @@ export function Pomodoro({}) {
 		<div
 			className={twMerge(
 				"pomo-section flex min-h-screen snap-start flex-col items-center text-white lg:gap-5",
-				!timer.isTicking || timer.timerMode === timerState.Rest
+				!timer.isTicking || timer.timerMode !== timerState.Work
 					? "bg-PomoInActive"
 					: "bg-PomoActive text-PomoInActive",
 			)}

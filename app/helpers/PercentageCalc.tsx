@@ -1,3 +1,4 @@
+import { useAppSelector } from "../redux/store";
 import { ITimer, timerState } from "../typing";
 
 export function calculatePercentage(time: number, timer: timerState) {
@@ -5,6 +6,10 @@ export function calculatePercentage(time: number, timer: timerState) {
 	let slope = 0;
 
 	if (timer === timerState.Work) {
+		slope = -100 / 25; // change in y / change in x
+	}
+
+	if (timer === timerState.LongRest) {
 		slope = -100 / 25; // change in y / change in x
 	}
 
@@ -28,7 +33,7 @@ export function getStyle({ isTicking, timerMode }: ITimer) {
 		trailColor: "transparent",
 	};
 
-	if (timerMode === timerState.Rest) {
+	if (timerMode !== timerState.Work) {
 		timerStyle = {
 			textColor: "white",
 			pathColor: "#00",

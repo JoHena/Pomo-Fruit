@@ -31,6 +31,10 @@ export function Timer({
 			if (timerMode === timerState.Rest) {
 				dispatch(setMode(0));
 			}
+
+			if (timerMode === timerState.LongRest) {
+				dispatch(setMode(0));
+			}
 		} else {
 			dispatch(updateTimer());
 		}
@@ -62,7 +66,13 @@ export function Timer({
 
 			<div className="flex w-[90%] flex-col items-center gap-8">
 				<Button
-					className={twMerge(isTicking && "bg-PomoInActive text-white")}
+					className={twMerge(
+						isTicking
+							? timerMode === timerState.Work
+								? "bg-PomoInActive text-white"
+								: "bg-white text-PomoInActive"
+							: "bg-PomoActive",
+					)}
 					variant={"pomodoro"}
 					size={"pomodoro"}
 					onClick={() => {

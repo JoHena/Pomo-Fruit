@@ -11,7 +11,7 @@ const buttonVariants = cva(
 			variant: {
 				default: "bg-primary text-primary-foreground hover:bg-primary/90",
 				pomodoro:
-					"bg-[#88D18A] text-[#13293D] font-black tracking-wider active:text-black active:bg-white/90 transition-colors duration-300 shadow-md shadow-zinc-800",
+					"bg-[#88D18A] text-[#13293D] font-black tracking-wider active:text-black active:bg-white/90 transition-colors duration-300 shadow-md shadow-zinc-800 text-md",
 				ghost: "hover:bg-accent hover:text-accent-foreground font-extrabold",
 				main: "font-extrabold bg-white bg-opacity-10 hover:bg-white hover:text-PomoInActive shadow-md",
 				link: "text-primary underline-offset-4 hover:underline",
