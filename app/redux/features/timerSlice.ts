@@ -51,8 +51,9 @@ export const timer = createSlice({
 
 			// Calculate new percentage for completion
 			const newPercentage = calculatePercentage(
-				state.value.minutes + state.value.seconds * 0.01,
-				state.value.timerMode,
+				state.value.minutes,
+				state.value.seconds,
+				state.value.modeTime[state.value.timerMode],
 			);
 
 			state.value.percentage = newPercentage;

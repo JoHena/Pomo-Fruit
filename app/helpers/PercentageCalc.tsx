@@ -1,27 +1,15 @@
-import { useAppSelector } from "../redux/store";
 import { ITimer, timerState } from "../typing";
 
-export function calculatePercentage(time: number, timer: timerState) {
-	// Slope of the line
-	let slope = 0;
+export function calculatePercentage(
+	minutes: number,
+	seconds: number,
+	totalTimeInMinutes: number,
+) {
+	var totalTimeInHours = totalTimeInMinutes / 60;
 
-	if (timer === timerState.Work) {
-		slope = -100 / 25; // change in y / change in x
-	}
-
-	if (timer === timerState.LongRest) {
-		slope = -100 / 25; // change in y / change in x
-	}
-
-	if (timer === timerState.Rest) {
-		slope = -100 / 5; // change in y / change in x
-	}
-
-	// Y-intercept
-	var yIntercept = 100;
-
-	// Calculate the percentage
-	var percentage = slope * time + yIntercept;
+	var percentage =
+		((totalTimeInHours - (minutes / 60 + seconds / 3600)) / totalTimeInHours) *
+		100;
 
 	return percentage;
 }
