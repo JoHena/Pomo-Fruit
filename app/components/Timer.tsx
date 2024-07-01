@@ -21,26 +21,26 @@ export function Timer({
 }: IPomodoro) {
 	const dispatch = useAppDispatch();
 
-	const clockTicking = () => {
-		if (minutes === 0 && seconds === 0) {
-			if (timerMode === timerState.Work) {
-				dispatch(setMode(1));
-				dispatch(finishTask());
-			}
-
-			if (timerMode === timerState.Rest) {
-				dispatch(setMode(0));
-			}
-
-			if (timerMode === timerState.LongRest) {
-				dispatch(setMode(0));
-			}
-		} else {
-			dispatch(updateTimer());
-		}
-	};
-
 	useEffect(() => {
+		const clockTicking = () => {
+			if (minutes === 0 && seconds === 0) {
+				if (timerMode === timerState.Work) {
+					dispatch(setMode(1));
+					dispatch(finishTask());
+				}
+
+				if (timerMode === timerState.Rest) {
+					dispatch(setMode(0));
+				}
+
+				if (timerMode === timerState.LongRest) {
+					dispatch(setMode(0));
+				}
+			} else {
+				dispatch(updateTimer());
+			}
+		};
+
 		const clock = setInterval(() => {
 			if (isTicking) {
 				clockTicking();
@@ -50,7 +50,7 @@ export function Timer({
 		return () => {
 			clearInterval(clock);
 		};
-	}, [seconds, minutes, isTicking, clockTicking]);
+	}, [seconds, minutes, isTicking]);
 
 	return (
 		<div className="flex w-full flex-col items-center gap-8 lg:h-auto">

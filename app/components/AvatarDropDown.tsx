@@ -6,9 +6,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOutIcon } from "lucide-react";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { logOut } from "@/actions/logout";
+import { signOut } from "next-auth/react";
 
 export function AvatarDropDown({
 	name,
@@ -17,10 +16,6 @@ export function AvatarDropDown({
 	name?: string | null;
 	image?: string | null;
 }) {
-	useEffect(() => {
-		console.log(image);
-	});
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -36,7 +31,7 @@ export function AvatarDropDown({
 					<Button
 						variant={"ghost"}
 						className="flex gap-3 px-3"
-						onClick={() => logOut()}
+						onClick={() => signOut()}
 					>
 						<LogOutIcon className="w-4" /> Logout
 					</Button>

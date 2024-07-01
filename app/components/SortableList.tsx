@@ -25,23 +25,12 @@ interface ISortableList {
 
 export function SortableList({ tasks }: ISortableList) {
 	const dispatch = useAppDispatch();
-	const [activeId, setActiveId] = useState<number | null>(null);
-
-	function handleDragStart(event: any) {
-		setActiveId(event.active.id);
-	}
 
 	const handleDragEnd = (event: any) => {
 		const { active, over } = event;
 		if (active.id === over.id) return;
 		dispatch(changePosition({ oldTaskID: active.id, newTaskID: over.id }));
-		setActiveId(null);
 	};
-
-	useEffect(() => {
-		console.log(activeId ? activeId - 1 : "...");
-		console.log(activeId ? tasks[activeId - 1] : "nada");
-	}, [activeId]);
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -57,7 +46,6 @@ export function SortableList({ tasks }: ISortableList) {
 			<DndContext
 				collisionDetection={closestCorners}
 				onDragEnd={handleDragEnd}
-				onDragStart={handleDragStart}
 				sensors={sensors}
 			>
 				<SortableContext items={tasks} strategy={verticalListSortingStrategy}>
