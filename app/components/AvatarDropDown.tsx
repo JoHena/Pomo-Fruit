@@ -7,8 +7,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOutIcon } from "lucide-react";
 import { useEffect } from "react";
-import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { logOut } from "@/actions/logout";
 
 export function AvatarDropDown({
 	name,
@@ -36,7 +36,7 @@ export function AvatarDropDown({
 					<Button
 						variant={"ghost"}
 						className="flex gap-3 px-3"
-						onClick={() => signOut()}
+						onClick={() => logOut()}
 					>
 						<LogOutIcon className="w-4" /> Logout
 					</Button>
