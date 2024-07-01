@@ -26,7 +26,7 @@ Pomotruit is a simple and customizable Pomodoro timer. It aims to provide a way 
 - Stat tracking and visualization, create an account or login in via Google or Github.
 
 ## Roadmap
-:memo: Future plans for enhancements and development:
+Future plans for enhancements and development:
   - [X] Responsive Design - Clean UI.
   - [x] Draggable Task list for Adjusting Priority.
   - [X] User OAuth and credential Login, Registration.
