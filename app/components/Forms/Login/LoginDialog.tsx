@@ -63,7 +63,7 @@ export function LoginButton() {
 						href={"/register"}
 						className="w-fit border-b border-b-transparent text-center text-sm hover:border-b-black"
 					>
-						Don't have an account?
+						Don&apos;t have an account?
 					</Link>
 				</div>
 			</DialogContent>
