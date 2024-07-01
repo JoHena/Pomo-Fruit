@@ -27,7 +27,7 @@ export function useTasks() {
 		const index = tasks.findIndex((currentTask: Task) => currentTask.id === id);
 
 		setTotalTime((time) => {
-			return time + pomoCount - tasks[index].pomodoroTime;
+			return time + pomoCount - tasks[index].pomoTime;
 		});
 
 		setTasks((prev: any) => {
