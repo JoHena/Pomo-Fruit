@@ -1,5 +1,5 @@
+<h1 align="center">PomoFruit</h1>
 <p align="center">A simple and customizable Pomodoro timer to track your productivity.</p>
-
 ---
 
 <div float="left" align="center">
@@ -9,10 +9,14 @@
 
 
 ---
+- [Live Build](#live-build)
 - [Overview](#overview)
 - [Features](#features)
 - [RoadMap](#roadmap)
 ---
+
+## Live Build
+[PomoFrui](https://pomofruit.netlify.app)
 
 ## Overview
 
