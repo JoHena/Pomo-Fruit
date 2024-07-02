@@ -1,6 +1,6 @@
 <h1 align="center">PomoFruit</h1>
 <p align="center">A simple and customizable Pomodoro timer to track your productivity.</p>
----
+
 
 <div float="left" align="center">
   <img alt="Pomo fruit" src="https://github.com/JoHena/Pomodoro/assets/80927773/7e3074f5-b6ef-45e9-9a74-6077fff67049">
@@ -16,7 +16,7 @@
 ---
 
 ## Live Build
-[PomoFrui](https://pomofruit.netlify.app)
+[PomoFruit](https://pomo-fruit.vercel.app)
 
 ## Overview
 
