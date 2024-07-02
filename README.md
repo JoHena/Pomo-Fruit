@@ -16,7 +16,7 @@
 ---
 
 ## Live Build
-[PomoFrui](https://pomo-fruit.vercel.app)
+[PomoFruit](https://pomo-fruit.vercel.app)
 
 ## Overview
 
