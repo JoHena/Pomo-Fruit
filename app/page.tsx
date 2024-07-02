@@ -52,8 +52,8 @@ export default function Home() {
 								alarm rings.
 							</li>
 							<li>
-								Iterate until you finish all your tasks. Don't worry you'll get
-								an extra long rest every 2 pomodoros!
+								Iterate until you finish all your tasks. Don&apos;t worry you
+								will get an extra long rest every 2 pomodoros!
 							</li>
 						</ol>
 					</div>
