@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppDispatch } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
 import { addTask, changeMode, editTask } from "@/app/redux/features/taskSlice";
-import { PomoCounter } from "../PomoCounter";
+import { PomoCounter } from "./PomoCounter";
 import { Task } from "@/app/typing";
 
 interface ITaskForm {

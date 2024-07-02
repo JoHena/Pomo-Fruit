@@ -9,6 +9,10 @@ export const LoginSchema = z.object({
 	}),
 });
 
+export const settingSchema = z.object({
+	workTime: z.number().int({ message: "Work time must be an integer" }),
+});
+
 export const RegisterSchema = z.object({
 	email: z.string().email({
 		message: "Email is required.",

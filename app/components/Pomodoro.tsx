@@ -1,5 +1,5 @@
 "use client";
-import { Timer } from "@/app/components/Timer";
+import { Timer } from "@/app/components/Timer/Timer";
 import { twMerge } from "tailwind-merge";
 import { Navbar } from "./Navbar";
 import { timerState } from "../typing";

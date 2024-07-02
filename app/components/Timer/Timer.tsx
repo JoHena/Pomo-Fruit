@@ -1,15 +1,19 @@
 "use client";
 import "react-circular-progressbar/dist/styles.css";
 import React, { useEffect } from "react";
-import { IPomodoro, timerState } from "../typing";
-import { useAppDispatch } from "../redux/store";
-import { setMode, setTicking, updateTimer } from "../redux/features/timerSlice";
-import { finishTask } from "../redux/features/taskSlice";
+import { IPomodoro, timerState } from "../../typing";
+import { useAppDispatch } from "../../redux/store";
+import {
+	setMode,
+	setTicking,
+	updateTimer,
+} from "../../redux/features/timerSlice";
+import { finishTask } from "../../redux/features/taskSlice";
 import { twMerge } from "tailwind-merge";
-import { getStyle } from "../helpers/PercentageCalc";
+import { getStyle } from "../../helpers/PercentageCalc";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Button } from "@/components/ui/button";
-import { TaskCounter } from "./Tasks/TaskCounter";
+import { TaskCounter } from "../Tasks/TaskCounter";
 import { ModeSelector } from "./ModeSelector";
 
 export function Timer({

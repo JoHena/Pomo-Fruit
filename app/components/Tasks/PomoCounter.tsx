@@ -1,5 +1,5 @@
 import React from "react";
-import { AdderButton } from "./AdderButton";
+import { AdderButton } from "../AdderButton";
 
 interface ICounter {
 	count: number;

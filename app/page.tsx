@@ -31,7 +31,7 @@ export default function Home() {
 							<span className="border-b-4 border-orange-400 pb-3">How</span> to
 							use the Pomodoro Timer.
 						</h3>
-						<ul className="list-disc pl-6 *:my-3 marker:text-orange-500 xl:ml-8">
+						<ol className="list-decimal pl-6 *:my-3 marker:text-orange-600 xl:ml-8">
 							<li>Add tasks to work on today.</li>
 							<li>
 								Set estimate pomodoros (1 = 25min of work) for each tasks.
@@ -41,18 +41,21 @@ export default function Home() {
 								tackle them.
 							</li>
 							<li>
-								Start the timer and focus on the task for the set time. <br />
+								Start the timer and focus on the task for the set time.
+								<br />
 								<span className="font-bold">
-									(Finished early? Stop the timer and continue on to your next
-									Task!)
+									(Finished early? Mark the test as completed and move on!)
 								</span>
 							</li>
 							<li>
 								Take a break for 5 minutes (or your preffered time) when the
 								alarm rings.
 							</li>
-							<li>Iterate 3-5 until you finish the tasks.</li>
-						</ul>
+							<li>
+								Iterate until you finish all your tasks. Don't worry you'll get
+								an extra long rest every 2 pomodoros!
+							</li>
+						</ol>
 					</div>
 
 					<div>

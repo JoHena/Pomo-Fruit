@@ -3,7 +3,7 @@ import { TaskForm } from "./TaskForm";
 import { twMerge } from "tailwind-merge";
 import { useAppSelector } from "@/app/redux/store";
 import { ITimer, timerState } from "@/app/typing";
-import { SortableList } from "../SortableList";
+import { SortableList } from "./SortableList";
 
 export function TaskManager({ timerMode, isTicking }: ITimer) {
 	const [active, setActive] = useState(false);

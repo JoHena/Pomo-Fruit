@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { twMerge } from "tailwind-merge";
-import { timerState } from "../typing";
-import { setMode } from "../redux/features/timerSlice";
-import { useAppDispatch } from "../redux/store";
+import { timerState } from "../../typing";
+import { setMode } from "../../redux/features/timerSlice";
+import { useAppDispatch } from "../../redux/store";
 
 export function ModeSelector({
 	timerMode,

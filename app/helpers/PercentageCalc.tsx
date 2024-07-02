@@ -24,8 +24,8 @@ export function getStyle({ isTicking, timerMode }: ITimer) {
 	if (timerMode !== timerState.Work) {
 		timerStyle = {
 			textColor: "white",
-			pathColor: "#00",
-			trailColor: "#13293D",
+			pathColor: "rgba(136, 209, 138, 100)",
+			trailColor: "transparent",
 		};
 	}
 
