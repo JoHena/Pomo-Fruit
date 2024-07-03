@@ -1,4 +1,3 @@
-import { SettingsForm } from "./SettingsForm";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -8,18 +7,15 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
 
-export function SettingsButton() {
-	const [open, setOpen] = useState(false);
-
+export function StatsButton() {
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
+		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant="main">
-					<div className="hidden xl:block">Settings</div>
+					<div className="hidden xl:block">Stats</div>
 					<span className="material-symbols-outlined rounded-lg p-0.5 xl:hidden">
-						settings
+						monitoring
 					</span>
 				</Button>
 			</DialogTrigger>
@@ -29,13 +25,11 @@ export function SettingsButton() {
 				onOpenAutoFocus={(e) => e.preventDefault()}
 			>
 				<DialogHeader>
-					<DialogTitle className="text-center">Settings</DialogTitle>
+					<DialogTitle className="text-center">Stats</DialogTitle>
 					<DialogDescription className="text-center">
-						Everyone works differently!
+						Check up on how you&apos;re doing! <br /> (In-Development)
 					</DialogDescription>
 				</DialogHeader>
-
-				<SettingsForm setOpen={setOpen} />
 			</DialogContent>
 		</Dialog>
 	);

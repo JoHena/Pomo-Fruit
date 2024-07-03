@@ -2,7 +2,7 @@
 import "react-circular-progressbar/dist/styles.css";
 import React, { useEffect } from "react";
 import { IPomodoro, timerState } from "../../typing";
-import { useAppDispatch } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
 	setMode,
 	setTicking,

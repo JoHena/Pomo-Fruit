@@ -58,8 +58,18 @@ export const timer = createSlice({
 
 			state.value.percentage = newPercentage;
 		},
+		changeTime: (
+			state,
+			action: PayloadAction<{
+				0: number;
+				1: number;
+				2: number;
+			}>,
+		) => {
+			state.value.modeTime = action.payload;
+		},
 	},
 });
 
-export const { setTicking, setMode, updateTimer } = timer.actions;
+export const { setTicking, setMode, updateTimer, changeTime } = timer.actions;
 export default timer.reducer;

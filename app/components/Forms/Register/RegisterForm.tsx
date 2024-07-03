@@ -1,5 +1,5 @@
 "use client";
-import { RegisterSchema } from "../../../../schemas";
+import { RegisterSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";

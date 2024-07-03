@@ -3,6 +3,7 @@ import { LoginButton } from "./Forms/Login/LoginDialog";
 import { SettingsButton } from "./Forms/PomoSettings/SettingsButton";
 import { AvatarDropDown } from "./AvatarDropDown";
 import { useCurrentUser } from "@/hooks/current-user";
+import { StatsButton } from "./Stats/StatsButton";
 
 export function Navbar() {
 	const session = useCurrentUser();
@@ -19,7 +20,7 @@ export function Navbar() {
 				{session ? (
 					<>
 						<li>
-							<SettingsButton />
+							<StatsButton />
 						</li>
 						<li>
 							<AvatarDropDown name={session.name} image={session.image} />
