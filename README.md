@@ -36,6 +36,7 @@ Future plans for enhancements and development:
   - [x] Draggable Task list for Adjusting Priority.
   - [X] User OAuth and credential Login, Registration.
   - [X] Customizable Task and Timer Settings.
+  - [ ] More Task customization.
   - [ ] User stats tracking and display.
   - [ ] Customizable background Colors for each mode.
   - [ ] Selectable Timer Sounds
