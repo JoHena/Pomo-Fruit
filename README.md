@@ -37,6 +37,6 @@ Future plans for enhancements and development:
   - [X] User OAuth and credential Login, Registration.
   - [X] Customizable Task and Timer Settings.
   - [ ] More Task customization.
-  - [ ] User stats tracking and display.
+  - [ ] User stats tracking and display. ( In the works )
   - [ ] Customizable background Colors for each mode.
   - [ ] Selectable Timer Sounds
