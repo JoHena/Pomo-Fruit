@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Task, timerState } from "../../typing";
 import { twMerge } from "tailwind-merge";
-import { changeMode } from "../../redux/features/taskSlice";
+import { changeMode, finishTaskById } from "../../redux/features/taskSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../../redux/store";
 import { useSortable } from "@dnd-kit/sortable";
@@ -46,15 +46,20 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 				>
 					<div className="flex w-[90%] items-center justify-between">
 						<div className="flex items-center gap-3">
-							<span
+							<button
+								data-no-dnd="true"
 								className={twMerge(
-									"material-symbols-outlined",
-									task.completed && "text-PomoActive",
+									"material-symbols-outlined transition-colors hover:text-opacity-80",
+									task.completed && "text-PomoActive hover:text-opacity-80",
 								)}
+								onClick={() => {
+									console.log(task.id);
+									dispatch(finishTaskById({ id: task.id }));
+								}}
 							>
 								check_circle
-							</span>
-							<span>{task.taskName}</span>
+							</button>
+							<span>{task.id}</span>
 						</div>
 						<span
 							className={
@@ -70,7 +75,7 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 					<button
 						disabled={task.completed}
 						data-no-dnd="true"
-						className="material-symbols-outlined poi text-xl font-extrabold shadow-xl transition-colors hover:text-blue-500 disabled:text-gray-400 disabled:hover:text-gray-400"
+						className="material-symbols-outlined text-xl font-extrabold shadow-xl transition-colors hover:text-blue-500 disabled:text-gray-400 disabled:hover:text-gray-400"
 						onClick={() => {
 							dispatch(changeMode({ id: task!.id, mode: true }));
 						}}

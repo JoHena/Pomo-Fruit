@@ -8,7 +8,7 @@ import {
 	setTicking,
 	updateTimer,
 } from "../../redux/features/timerSlice";
-import { finishTask } from "../../redux/features/taskSlice";
+import { finishTaskRecent } from "../../redux/features/taskSlice";
 import { twMerge } from "tailwind-merge";
 import { getStyle } from "../../helpers/PercentageCalc";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -30,7 +30,7 @@ export function Timer({
 			if (minutes === 0 && seconds === 0) {
 				if (timerMode === timerState.Work) {
 					dispatch(setMode(1));
-					dispatch(finishTask());
+					dispatch(finishTaskRecent());
 				}
 
 				if (timerMode === timerState.Rest) {

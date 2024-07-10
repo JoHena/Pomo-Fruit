@@ -80,9 +80,10 @@ export const tasks = createSlice({
 			state.value.tasks = arrayMove(tasks, originalPos, newPos);
 		},
 
-		finishTask: (state) => {
+		finishTaskRecent: (state) => {
 			const { tasks } = state.value;
 
+			// Edit most recent
 			for (const index in tasks) {
 				if (tasks[index].completed !== true) {
 					state.value.tasks[index].pomosFinished += 1;
@@ -98,9 +99,38 @@ export const tasks = createSlice({
 				}
 			}
 		},
+		finishTaskById: (state, action: PayloadAction<{ id?: number }>) => {
+			const byId = action.payload.id;
+
+			if (byId) {
+				const pos = state.value.tasks.map((e) => e.id).indexOf(byId); // Get position in list
+
+				// Set completed status to opposite of current state
+				state.value.tasks[pos].completed = !state.value.tasks[pos].completed;
+
+				if (state.value.tasks[pos].completed) {
+					state.value.tasks[pos].pomosFinished +=
+						state.value.tasks[pos].pomoTime; // Set all pomos in task as completed
+
+					state.value.totalFinished += state.value.tasks[pos].pomoTime; // Add task pomos to totalFinished
+				} else {
+					state.value.tasks[pos].pomosFinished -=
+						state.value.tasks[pos].pomoTime; // Return all pomos on task to 0
+
+					state.value.totalFinished -= state.value.tasks[pos].pomoTime; // Remove pomos from totalFinished
+				}
+				return;
+			}
+		},
 	},
 });
 
-export const { addTask, editTask, changeMode, changePosition, finishTask } =
-	tasks.actions;
+export const {
+	addTask,
+	editTask,
+	changeMode,
+	changePosition,
+	finishTaskRecent,
+	finishTaskById,
+} = tasks.actions;
 export default tasks.reducer;
