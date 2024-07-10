@@ -1,3 +1,4 @@
+import { StatBubble } from "./StatBubble";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -7,6 +8,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { LineChartGraph } from "./HourChart";
 
 export function StatsButton() {
 	return (
@@ -21,15 +23,25 @@ export function StatsButton() {
 			</DialogTrigger>
 
 			<DialogContent
-				className="text-black sm:max-w-[365px]"
+				className="max-w-[800px] text-black"
 				onOpenAutoFocus={(e) => e.preventDefault()}
 			>
 				<DialogHeader>
-					<DialogTitle className="text-center">Stats</DialogTitle>
 					<DialogDescription className="text-center">
 						Check up on how you&apos;re doing! <br /> (In-Development)
 					</DialogDescription>
 				</DialogHeader>
+
+				<div className="flex flex-col text-center">
+					<div className="mb-4 self-start">Activity</div>
+					<div className="flex items-center gap-12">
+						<StatBubble value={30} label="Hours Worked" />
+						<StatBubble value={5} label="Day Streak" />
+						<StatBubble value={2} label="Days Missed" />
+					</div>
+					<div className="my-6 self-start text-PomoInActive">Hours Focused</div>
+					<LineChartGraph />
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
