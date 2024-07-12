@@ -53,13 +53,12 @@ export function TaskCard({ task, taskForm }: ITaskCard) {
 									task.completed && "text-PomoActive hover:text-opacity-80",
 								)}
 								onClick={() => {
-									console.log(task.id);
 									dispatch(finishTaskById({ id: task.id }));
 								}}
 							>
 								check_circle
 							</button>
-							<span>{task.id}</span>
+							<span>{task.taskName}</span>
 						</div>
 						<span
 							className={
