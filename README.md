@@ -6,9 +6,6 @@
   <img alt="" src="">
 </div>
 
-## Live Build
-[PomoFruit](https://pomo-fruit.vercel.app)
-
 ## Features
 
 - Complete marketplace built in Next.js 14
